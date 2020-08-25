@@ -141,7 +141,7 @@
                       </div>
                     </div>
                   </div>
-                  <a href="#form" class="comments__button button button-scroll button-mobile-hidden button--red"
+                  <a href="#form" class="comments__button button button-scroll button-mobile-hidden button--color"
                      data-eventid="cta3" id="cta3">Хочу заказать</a>
                 </div>
               </div>
