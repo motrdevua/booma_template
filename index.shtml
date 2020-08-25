@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1" name="viewport">
+
+  <title>Dr.Whinsdorf лимфодренажный массажер для ног | Booma Израиль</title>
+  <meta content="Заказывайте в интернет магазине массажер-лимфодренаж для ног Dr.Whinsdorf. Улучшение кровообращения, тонизирование кожи, уменьшение усталости, антицеллюлитный эффект. Расслабляющий массаж ног дома, в офисе, в дороге. Доставка по Израилю бесплатно."
+        name="description">
+  <meta content="интернет магазин, заказать, бесплатная доставка, здоровье, массажер, расслабляющий массаж, массаж ног, кровообращение, антицеллюлитный"
+        name="keywords">
+
+  <meta content="Массажер-лимфодренаж для ног | Booma Израиль" property="og:title">
+  <meta content="Заказывайте в интернет магазине массажер-лимфодренаж для ног Dr.Whinsdorf. Улучшение кровообращения, тонизирование кожи, уменьшение усталости, антицеллюлитный эффект. Расслабляющий массаж ног дома, в офисе, в дороге. Доставка по Израилю бесплатно."
+        property="og:description">
+  <meta content="" property="og:url">
+  <meta content="website" property="og:type">
+  <meta content="assets/img/share.jpg" property="og:image">
+  <meta content="250" property="og:image:width">
+  <meta content="250" property="og:image:height">
+
+  <link href="/assets/img/favicon.png" rel="shortcut icon" type="image/png">
+
+  <link rel="stylesheet" href="assets/css/style.min.css">
+
+  <!--#include virtual="/leads/ext/core/ssi/boomaNEW/headTags.html" -->
+  <!--#include virtual="/leads/ext/core/ssi/boomaNEW/new_css.html" -->
+</head>
+
+<body>
+  <div class="wrapper">
+    <!--#include virtual="/leads/ext/core/ssi/boomaNEW/header.html" -->
+
+    <div class="content">
+
+      <section class="section banner first-screen">
+        <div class="container">
+          <div class="row">
+          </div>
+        </div>
+      </section>
+      <!-- .first-screen end -->
+
+      <section class="section about" id="about">
+        <div class="container">
+          <div class="row"></div>
+        </div>
+      </section>
+      <!-- .about -->
+
+      <section class="section desc">
+        <div class="container">
+          <div class="row"></div>
+        </div>
+      </section>
+      <!-- .desc end -->
+
+      <section class="form-section form_wrapper" id="form">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="d-flex flex-column justify-content-center col-lg-6 col-md-8 col-12">
+              <h3 class="form__title">Закажите <span class="form__title--color">миксер Luxor 3 в 1</span> прямо сейчас!
+              </h3>
+            </div>
+          </div>
+        </div>
+        <!--#include virtual="/leads/ext/core/ssi/boomaNEW/new_form.html" -->
+        <!--#include virtual="/leads/ext/core/ssi/boomaNEW/new_formContent.html" -->
+      </section>
+      <!-- .form end -->
+
+      <section class="section comments" id="comments">
+        <div class="container">
+          <div class="row justify-content-start">
+            <div class="col-lg-7 col-12 pr-0 pl-0">
+              <div class="comments__wrap">
+                <div class="comments__inner">
+                  <h4 class="comments__title">ОТЗЫВЫ НАШИХ ПОКУПАТЕЛЕЙ</h4>
+                  <div class="comments__item comment">
+                    <div class="comment__image-wrap">
+                      <img src="assets/img/comments/user-1.png" alt="User-photo" class="comment__image">
+                    </div>
+                    <div class="comment__box">
+                      <div class="comment__text-wrap">
+                        <span class="comment__name">Елена</span>
+                        <p class="comment__text">Приобрела этот чудо миксер. Действительно мощное устройство, со своими
+                          функциями справляется на «отлично»!</p>
+                      </div>
+                      <div class="comment__buttons">
+                        <span class="comment__button">Нравится</span>
+                        <span class="comment__button">Ответить</span>
+                        <span class="comment__days">2 д.</span>
+                      </div>
+                    </div>
+                    <div class="comment__like like">
+                      <div class="like__icon">
+                        <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3.44478 4.58618H1.62103C1.25423 4.58618 0.956879 4.88353 0.956879 5.25033V10.4498C0.956879 10.8166 1.25423 11.1139 1.62103 11.1139H3.44478C3.81158 11.1139 4.10893 10.8166 4.10893 10.4498V5.25033C4.10893 4.88353 3.81158 4.58618 3.44478 4.58618Z"
+                                fill="white" />
+                          <path d="M5.44308 11.1138C5.26709 11.1132 5.09846 11.0431 4.97402 10.9187C4.84958 10.7942 4.77944 10.6256 4.77893 10.4496V5.25017C4.77893 4.42119 7.40371 2.91554 7.54348 2.0962C7.63313 1.57375 7.51456 0.233887 7.87507 0.233887C8.4891 0.233887 9.2747 0.468121 9.2747 1.82822C9.2747 3.02832 8.4891 4.58506 8.4891 4.58506H11.6701C11.7891 4.58506 11.907 4.60853 12.017 4.65412C12.127 4.69972 12.227 4.76655 12.3111 4.85079C12.3953 4.93503 12.462 5.03503 12.5075 5.14507C12.5529 5.25512 12.5763 5.37305 12.5762 5.49212C12.5762 5.69682 12.5068 5.89548 12.3793 6.05567C12.2519 6.21586 12.0739 6.32811 11.8744 6.37411C11.9806 6.45898 12.0663 6.56663 12.1252 6.68911C12.1841 6.81158 12.2147 6.94574 12.2147 7.08164C12.2145 7.28655 12.145 7.48536 12.0174 7.64569C11.8898 7.80603 11.7116 7.91843 11.512 7.9646C11.6182 8.04937 11.704 8.157 11.7629 8.2795C11.8218 8.40199 11.8524 8.53619 11.8522 8.67212C11.8521 8.8769 11.7827 9.07561 11.6553 9.23593C11.5279 9.39624 11.35 9.50873 11.1505 9.55508C11.2566 9.63995 11.3422 9.74762 11.4009 9.87011C11.4597 9.9926 11.49 10.1268 11.4898 10.2626C11.4898 10.3817 11.4663 10.4996 11.4207 10.6096C11.3751 10.7196 11.3083 10.8195 11.2241 10.9036C11.1398 10.9878 11.0398 11.0545 10.9298 11.1C10.8198 11.1455 10.7018 11.1688 10.5828 11.1687L5.44308 11.1138Z"
+                                fill="white" />
+                        </svg>
+
+                      </div>
+                      <div class="like__counter">1</div>
+                    </div>
+                  </div>
+                  <div class="comments__item comment">
+                    <div class="comment__image-wrap">
+                      <img src="assets/img/comments/user-2.png" alt="User-photo" class="comment__image">
+                    </div>
+                    <div class="comment__box">
+                      <div class="comment__text-wrap">
+                        <span class="comment__name">Игорь</span>
+                        <p class="comment__text">Подарил супруге на годовщину. Она осталась очень довольна! Этот миксер
+                          – настоящий помощник на кухне: и тесто замесит, и фарш нарубит. Буду обязательно рекомендовать
+                          друзьям!</p>
+                      </div>
+                      <div class="comment__buttons">
+                        <span class="comment__button">Нравится</span>
+                        <span class="comment__button">Ответить</span>
+                        <span class="comment__days">3 д.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="comments__item comment comment--booma">
+                    <div class="comment__image-wrap">
+                      <img src="assets/img/comments/booma.png" alt="User-photo" class="comment__image">
+                    </div>
+                    <div class="comment__box">
+                      <div class="comment__text-wrap">
+                        <span class="comment__name">Booma Israel</span>
+                        <p class="comment__text">Спасибо за Ваш отзыв!</p>
+                      </div>
+                      <div class="comment__buttons">
+                        <span class="comment__button">Нравится</span>
+                        <span class="comment__button">Ответить</span>
+                        <span class="comment__days">3 д.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <a href="#form" class="comments__button button button-scroll button-mobile-hidden button--red"
+                     data-eventid="cta3" id="cta3">Хочу заказать</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- .section comments end -->
+    </div>
+
+    <!--#include virtual="/leads/ext/core/ssi/boomaNEW/footer.html" -->
+  </div>
+
+  <script src="/leads/ext/core/jquery.min.js"></script>
+  <script src="/leads/ext/core/inc.boomaNEW.js"></script>
+
+  <script>
+    window.lang = "ru";
+    window.project_id = "7424";
+    window.ccLocalParams = "&cred_type=8&maxpay=10";
+
+    window.isCCPaymentAvaliable = true;
+    window.isPaypalPaymentAvaliable = false;
+    window.buttonCallToAction = "ЗАКАЗАТЬ";
+    window.buttonCallToActionTopForm = "ЗАКАЗАТЬ";
+
+    window.orderingButtonText = "ЗАКАЗАТЬ";
+    window.orderingWidgetPrice = true;
+
+  </script>
+</body>
+
+
+</html>
