@@ -1,0 +1,162 @@
+<section class="form__wrapper" id="form__wrapper">
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-6 col-lg-7 col-md-9 col-sm-11 col-12 pl-0 pr-0 pl-lg-3 pr-lg-3 pr-md-3 pl-md-3">
+        <div class="basket"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-6 col-lg-7 col-md-9 col-sm-11 col-12 pl-0 pr-0 pl-lg-3 pr-lg-3 pr-md-3 pl-md-3">
+        <div class="form-price--wrapper">
+          <div class="productPrice_container">
+            <p>
+              цена
+              <br>
+              сейчас: &nbsp;
+              <strong class="price red_price" style="display: inline;">
+                <span class="price_block" data-discount=""></span>
+              </strong>
+              <strong class="old_price form-old-price sale">
+                <span class="price_block"></span>
+              </strong>
+            </p>
+          </div>
+          <p class="credit_type" id="credit_type"></p>
+        </div>
+
+        <div class="wrapper" id="wrapper">
+
+          <div class="tabs" style="display: none;">
+            <div class="tab pay_call__tab active" data-tab="consultant_payment">
+              <div class="tab_text">
+                //=include assets/images/form/icon-callcenter.svg
+                <p>Отдел<br> заказов</p>
+              </div>
+            </div>
+
+            <div class="or" id="or">
+              <img src="assets/images/form/or_RU.gif" alt="or">
+            </div>
+
+            <div class="tab pay_card__tab" data-tab="cc_payment">
+              <div class="tab_text">
+                //=include assets/images/form/icon-pay-percent.svg
+                <p>Оплата<br> онлайн</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab_content">
+            <div class="tab_item" id="consultant_payment">
+              <div class="tab_item_content">
+                <div class="call_form">
+                  <p class="call_form__subtitle">Оставьте свои данные и оператор перезвонит Вам в течение 1 дня.</p>
+                  <form accept-charset="UTF-8" autocomplete="on" class="form-container" data-parsley-validate=""
+                        method="post" novalidate="" data-formname="bottom_form">
+                    <fieldset>
+                      <div class="form_row">
+                        <label class="name_label" for="name">
+                          <span class="red_point"></span>
+                        </label>
+                        <br>
+                        <input name="name" type="text" class="form-text parsley-error" autocomplete="name"
+                               data-parsley-error-message="Введите Ваше имя" data-parsley-trigger="change" required=""
+                               tabindex="5" size="60" placeholder="Ваше имя" data-parsley-maxlength="40" maxlength="40">
+                      </div>
+
+                      <div class="form_row telephone_number__wrapper pop">
+
+                        <label class="phone_label" for="phone">
+                          <span class="red_point"></span>
+                        </label>
+                        <br>
+                        <div class="intl-tel-input">
+                          <div class="flag-container">
+                            <div class="selected-flag" role="combobox" aria-owns="country-listbox">
+                            </div>
+                          </div>
+
+                          <input name="phone" type="tel" class="form-text parsley-success phone-input"
+                                 autocomplete="tel" data-parsley-error-message="Введите корректный номер телефона"
+                                 data-parsley-trigger="change" required="" tabindex="6" data-parsley-i18nvalidation=""
+                                 data-parsley-minlength="7" data-parsley-pattern="^\D*(?:\d\D*){7,}$"
+                                 data-intl-tel-input-id="0" placeholder="Телефон" data-parsley-maxlength="15"
+                                 maxlength="15">
+                        </div>
+
+                      </div>
+
+                      <div class="form_row">
+                        <div class="notesContainer"></div>
+                      </div>
+
+                      <div class="form_row">
+                        <div id="notesContainer"></div>
+                        <div class="checkbox_container">
+                          <label class="checkbox_news" for="is_sms2">
+                            <input id="is_sms2" name="is_sms" type="checkbox" tabindex="8" checked=""
+                                   data-parsley-multiple="is_sms">
+                            <span class="ck_margin"></span>
+                            Я разрешаю получение маркетинговой информации от BOOMA
+                          </label>
+                        </div>
+                      </div>
+
+                      <button class="btn call_btn form-submit submit_btn" onclick="sendData(this)" type="button"
+                              tabindex="9">ОСТАВИТЬ ЗАЯВКУ</button>
+                    </fieldset>
+
+                    <input name="project_id" type="hidden" class="phone_row project_id">
+                    <input name="redirect_to" type="hidden" value="/ru/thank-you/">
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="tab_item" id="cc_payment" style="display: none;">
+              <div class="tab_item_content">
+                <div class="card_form">
+                  <div id="form-step1">
+                    <p class="first--regular">Оплатите заказ кредитной картой прямо сейчас и получите дополнительную
+                      скидку 3%.</p>
+                    <form id="prePayLoading">
+
+                      <div class="preloading_label">
+                        <label class="delivery_text" for="delivery_chek">
+                          <span>Выберите способ доставки: </span>
+                        </label>
+                        <select class="delivery_chek" id="delivery_chek" name="delivery_chek" style="width:249px">
+                          <option data-type="1" value="0">Доставка на почту: 0₪</option>
+                          <option data-type="2" value="19.90">Доставка курьером домой:
+                            19.90₪
+                          </option>
+                        </select>
+                      </div>
+
+                      <div class="preloading_label">
+                        <label class="delivery_text quantity" for="item_count">
+                          <span>Количество товара: </span>
+                        </label>
+                        <input id="item_count" name="item_count" type="number" class="delivery_chek" value="1"
+                               max="1000" min="1" style="width:249px">
+                      </div>
+                    </form>
+                  </div>
+
+                  <div id="form-step2" style="display:block">
+                    <iframe frameborder="0" scrolling="no"></iframe>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

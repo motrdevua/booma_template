@@ -1,0 +1,57 @@
+/*! header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  padding: 12px 0 15px;
+  width: 100%;
+  transition: all .2s linear;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+  }
+
+  &__contacts {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+
+    & a {
+      font-size: 18px;
+
+      @include link-underline;
+    }
+  }
+
+  &__phone, &__whatsapp {
+    display: flex;
+    align-items: center;
+    margin: 0 0 0 15px;
+  }
+}
+
+.icon__whatsapp {
+  width: 32px;
+  height: 32px;
+
+  @include icon-halo(50%, $whatsapp);
+}
+
+// ≥576px
+@include media-breakpoint-down(xs) {
+  .icon__whatsapp, .icon__phone {
+    width: 40px;
+    height: 40px;
+  }
+
+  .icon__phone {
+    @include icon-halo(50%, $phone);
+  }
+}
+
+/*! header end*/
+
+@import "_whatsapp-tooltip.scss";
+@import "_header-basket.scss";

@@ -1,0 +1,43 @@
+.form-info {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+
+  &__block {
+    margin: 15px 0;
+    padding: 0 15px;
+  }
+
+  &__desc {
+    color: #b0b0b0;
+    text-align: left;
+    font-size: 11px;
+  }
+
+  &__link {}
+
+  &__icons {}
+
+  &__title {
+    margin: 0 0 10px 0;
+    color: #6d6d6d;
+    font-size: 15px;
+    line-height: 1.2;
+  }
+
+  &__text {
+    color: #959595;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  &__icon {}
+
+  &__tooltip {}
+}
+
+.data-privacy-policy {}
+
+.delivery-of-orders {}
+
+.payment-methods {}

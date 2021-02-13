@@ -1,0 +1,122 @@
+/*! =====================  Bootstrap  ====================== */
+
+$grid-gutter-width: 30px;
+$grid-columns: 12;
+$grid-breakpoints: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px);
+$container-max-widths: (sm: 540px, md: 720px, lg: 960px, xl: 1170px);
+
+@import "../../../node_modules/bootstrap/scss/mixins/_breakpoints.scss";
+@import "../../../node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+/*! ===================  Bootstrap end  ==================== */
+
+/* ========================  Utils  ======================== */
+
+// @import "utils/mixin_font-face";
+// @import "utils/fontstylesheet";
+
+@import "utils/variables";
+
+@import "utils/mixin_icon-halo";
+@import "utils/_mixin_link-underline";
+
+/* ======================  Utils end ======================= */
+
+/*! =====================  Defaults  ======================= */
+
+@import "utils/nulling";
+
+html,
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  width: 100%;
+  height: 100%;
+  font-size: 100%;
+
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background-color: $pagebg;
+  color: $main;
+  letter-spacing: -.022em;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 17px;
+  font-family: $default-font;
+  line-height: 1.47059;
+
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+}
+
+.wrapper {
+  display: flex;
+  overflow: hidden;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 100%;
+  width: 100%;
+}
+
+.content {
+  flex: 1 0 auto;
+  margin: 70px 0 0 0;
+}
+
+.header,
+.footer {
+  flex: 0 0 auto;
+  background: $grey;
+  color: darken($white, 10%);
+  font-size: 12px;
+}
+
+/*! ===================  Defaults end  ===================== */
+
+/*! =====================  Svg colors ====================== */
+
+.fill-white {
+  fill: $white;
+}
+
+.fill-accent {
+  fill: $accent;
+}
+
+.fill-secondary {
+  fill: $grey;
+}
+
+.fill-light {
+  fill: darken($white, 10%);
+}
+
+.fill-whatsapp {
+  fill: $whatsapp;
+}
+
+.fill-phone {
+  fill: $phone;
+}
+
+/*! ==================  Svg colors end =================== */
+
+/* =====================  Blocks  ======================== */
+
+@import "_link-title";
+
+@import "../../blocks/ru/header/_header";
+@import "../../blocks/ru/footer/_footer";
+@import "../../blocks/ru/form/_delivery-payments";
+// @import '../../blocks/ru/footer/_popup';
+
+/* ======================  Media  ========================= */
+
+@import "media";
