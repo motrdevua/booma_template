@@ -26,8 +26,7 @@ $container-max-widths: (sm: 540px, md: 720px, lg: 960px, xl: 1170px);
 
 @import "utils/nulling";
 
-html,
-body {
+html, body {
   position: relative;
   margin: 0;
   padding: 0;
@@ -37,8 +36,8 @@ body {
   font-size: 100%;
 
   -webkit-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
+     -moz-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
 }
 
 body {
@@ -70,8 +69,7 @@ body {
   margin: 70px 0 0 0;
 }
 
-.header,
-.footer {
+.header, .footer {
   flex: 0 0 auto;
   background: $grey;
   color: darken($white, 10%);
@@ -79,34 +77,6 @@ body {
 }
 
 /*! ===================  Defaults end  ===================== */
-
-/*! =====================  Svg colors ====================== */
-
-.fill-white {
-  fill: $white;
-}
-
-.fill-accent {
-  fill: $accent;
-}
-
-.fill-secondary {
-  fill: $grey;
-}
-
-.fill-light {
-  fill: darken($white, 10%);
-}
-
-.fill-whatsapp {
-  fill: $whatsapp;
-}
-
-.fill-phone {
-  fill: $phone;
-}
-
-/*! ==================  Svg colors end =================== */
 
 /* =====================  Blocks  ======================== */
 

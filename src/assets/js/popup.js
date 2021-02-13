@@ -5,29 +5,30 @@ export default class Popup {
 
     popup.popOverlay = document.createElement('div');
     popup.modal = document.createElement('div');
-    popup.content = document.createElement('div');
+    popup.inner = document.createElement('div');
     popup.close = document.createElement('button');
 
     popup.popOverlay.classList.add('popup__overlay');
     popup.modal.classList.add('popup__modal');
-    popup.content.classList.add('popup__content');
+    popup.inner.classList.add('popup__inner');
     popup.close.classList.add('popup__close');
 
     document.body.insertBefore(popup.popOverlay, wrapper);
     document.body.insertBefore(popup.modal, wrapper);
-    popup.modal.appendChild(popup.content);
+    popup.modal.appendChild(popup.inner);
 
     popup.open = function () {
-      const openPopup = document.querySelectorAll('.open-popup');
+      const openPopup = document.querySelectorAll('body');
 
       const handleClick = function (e) {
         e.preventDefault();
         console.log(e.target);
+        console.log(content);
 
         popup.popOverlay.classList.add('popup-overlay-active');
         popup.modal.classList.add('popup-modal-active');
 
-        popup.content.innerHTML = content;
+        popup.inner.innerHTML = content;
 
         document.body.style.overflow = 'hidden';
         wrapper.classList.add('blur');
@@ -46,7 +47,7 @@ export default class Popup {
       popup.popOverlay.classList.remove('popup-overlay-active');
       popup.modal.classList.remove('popup-modal-active');
       wrapper.classList.remove('blur');
-      popup.content.innerHTML = '';
+      popup.inner.innerHTML = '';
       document.body.style.overflow = 'unset';
       return popup;
     };

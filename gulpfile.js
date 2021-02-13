@@ -243,7 +243,11 @@ function watchFiles() {
 
 function clean() {
   plugin.cache.clearAll();
-  return del([path.dist.root, `${path.src.fonts}**/*.css`]).then((dir) => {
+  return del([
+    path.dist.root,
+    `${path.src.fonts}**/*.css`,
+    `${path.src.img}sprite.svg`,
+  ]).then((dir) => {
     console.log('Deleted files and folders:\n', dir.join('\n'));
   });
 }
