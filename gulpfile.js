@@ -3,11 +3,11 @@ const plugin = require('gulp-load-plugins')({
   rename: {
     'gulp-group-css-media-queries': 'gcmq',
     'gulp-webp-in-html': 'GulpWebpHtml2',
+    'gulp-tinypng-extended': 'tinypng',
   },
 });
 
 const del = require('del');
-const imagemin = require('gulp-imagemin');
 
 const browserSync = require('browser-sync').create();
 
@@ -36,9 +36,9 @@ const path = {
     styles: 'src/assets/styles/',
     data: 'src/assets/data/',
   },
-  dist: {
-    root: 'dist/',
-    assets: 'dist/assets/',
+  app: {
+    root: 'app/',
+    assets: 'app/assets/',
   },
 };
 
@@ -86,7 +86,7 @@ const webpackConfig = {
 
 function serve() {
   browserSync.init({
-    server: path.dist.root,
+    server: path.app.root,
     // tunnel: 'project', // Demonstration page: http://project.localtunnel.me
     // online: false, // Work Offline Without Internet Connection
   });
@@ -107,7 +107,7 @@ function html() {
         })
       )
       // .pipe(plugin.GulpWebpHtml2())
-      .pipe(dest(path.dist.root))
+      .pipe(dest(path.app.root))
       .pipe(
         browserSync.reload({
           stream: true,
@@ -122,11 +122,7 @@ function styles() {
   return (
     src(`${path.src.styles}*.+(scss|sass)`)
       .pipe(dev(plugin.sourcemaps.init()))
-      .pipe(
-        plugin.plumber({
-          errorHandler: onError,
-        })
-      )
+      .pipe(plugin.plumber({ errorHandler: onError }))
       .pipe(
         plugin.sass
           .sync({ outputStyle: 'expanded' })
@@ -134,22 +130,10 @@ function styles() {
       )
       .pipe(plugin.autoprefixer())
       // .pipe(plugin.gcmq())
-      .pipe(
-        prod(
-          plugin.csso({
-            restructure: false,
-            sourceMap: true,
-            debug: true,
-          })
-        )
-      )
+      .pipe(plugin.csso({ restructure: false }))
       .pipe(dev(plugin.sourcemaps.write('.')))
-      .pipe(
-        plugin.rename({
-          suffix: '.min',
-        })
-      )
-      .pipe(dest(`${path.dist.assets}css`))
+      .pipe(plugin.rename({ suffix: '.min' }))
+      .pipe(dest(`${path.app.assets}css`))
       .pipe(browserSync.stream())
   );
 }
@@ -157,53 +141,37 @@ function styles() {
 /* =====================  js  ===================== */
 function js() {
   return src(`${path.src.js}main.js`)
-    .pipe(
-      plugin.plumber({
-        errorHandler: onError,
-      })
-    )
+    .pipe(plugin.plumber({ errorHandler: onError }))
     .pipe(stream(webpackConfig))
-    .pipe(
-      plugin.rename({
-        suffix: '.min',
-      })
-    )
-    .pipe(dest(`${path.dist.assets}js`))
-    .pipe(
-      browserSync.reload({
-        stream: true,
-      })
-    );
+    .pipe(plugin.rename({ suffix: '.min' }))
+    .pipe(dest(`${path.app.assets}js`))
+    .pipe(browserSync.reload({ stream: true }));
 }
 
 /* ===================  images  =================== */
 
 function img() {
-  return src(`${path.src.img}**/*.*`)
+  return src(`${path.src.img}**/*.{png,jpg,jpeg}`)
+    .pipe(plugin.plumber({ errorHandler: onError }))
     .pipe(
       plugin.webp({
-        quality: 90,
+        quality: 95,
       })
     )
-    .pipe(dest(`${path.dist.assets}images`))
-    .pipe(src(`${path.src.img}**/*.*`))
+    .pipe(dest(`${path.app.assets}images`))
+    .pipe(src(`${path.src.img}**/*.{png,jpg,jpeg}`))
     .pipe(
-      plugin.cache(
-        imagemin([
-          imagemin.gifsicle({ interlaced: true }),
-          imagemin.mozjpeg({ quality: 90, progressive: true }),
-          imagemin.optipng({ optimizationLevel: 3 }),
-          imagemin.svgo({
-            plugins: [
-              { removeViewBox: false },
-              { cleanupIDs: false },
-              { removeUnknownsAndDefaults: false },
-            ],
-          }),
-        ])
+      prod(
+        plugin.tinypng({
+          key: 'JBK36rHvht6hyW3MM7jQYzbx53hgWF2R',
+          sigFile: './src/assets/images/.tinypng-sigs',
+          log: true,
+        })
       )
     )
-    .pipe(dest(`${path.dist.assets}images`));
+    .pipe(dest(`${path.app.assets}images`))
+    .pipe(src(`${path.src.img}**/*.svg`))
+    .pipe(dest(`${path.app.assets}images`));
 }
 
 /* ===================  fontgen  ================== */
@@ -219,14 +187,14 @@ function fontgen() {
 
 function fonts() {
   return src(`${path.src.fonts}**/*.{svg,eot,ttf,woff,woff2}`).pipe(
-    dest(`${path.dist.assets}fonts`)
+    dest(`${path.app.assets}fonts`)
   );
 }
 
 /* =====================  data  =================== */
 
 function data() {
-  return src(`${path.src.data}**/*`).pipe(dest(`${path.dist.assets}data`));
+  return src(`${path.src.data}**/*`).pipe(dest(`${path.app.assets}data`));
 }
 
 /* ====================  watch  =================== */
@@ -244,121 +212,11 @@ function watchFiles() {
 function clean() {
   plugin.cache.clearAll();
   return del([
-    path.dist.root,
+    path.app.root,
     `${path.src.fonts}**/*.css`,
-    `${path.src.img}sprite.svg`,
+    `${path.src.img}/.tinypng-sigs`,
   ]).then((dir) => {
     console.log('Deleted files and folders:\n', dir.join('\n'));
-  });
-}
-
-/* ===================  favicon  ================== */
-
-const realFavicon = require('gulp-real-favicon');
-const fs = require('fs');
-
-// File where the favicon markups are stored
-const FAVICON_DATA_FILE = 'faviconData.json';
-
-// Generate the icons. This task takes a few seconds to complete.
-// You should run it at least once to create the icons. Then,
-// you should run it whenever RealFaviconGenerator updates its
-// package (see the check-for-favicon-update task below).
-function generateFavicon(done) {
-  realFavicon.generateFavicon(
-    {
-      masterPicture: 'src/assets/images/master_picture.png',
-      dest: 'dist/assets/images/icons',
-      iconsPath: '/',
-      design: {
-        ios: {
-          pictureAspect: 'backgroundAndMargin',
-          backgroundColor: '#ffffff',
-          margin: '14%',
-          assets: {
-            ios6AndPriorIcons: false,
-            ios7AndLaterIcons: false,
-            precomposedIcons: false,
-            declareOnlyDefaultIcon: true,
-          },
-        },
-        desktopBrowser: {
-          design: 'raw',
-        },
-        windows: {
-          pictureAspect: 'noChange',
-          backgroundColor: '#000000',
-          onConflict: 'override',
-          assets: {
-            windows80Ie10Tile: false,
-            windows10Ie11EdgeTiles: {
-              small: false,
-              medium: true,
-              big: false,
-              rectangle: false,
-            },
-          },
-        },
-        androidChrome: {
-          pictureAspect: 'shadow',
-          themeColor: '#ffffff',
-          manifest: {
-            name: 'Booma',
-            display: 'standalone',
-            orientation: 'notSet',
-            onConflict: 'override',
-            declared: true,
-          },
-          assets: {
-            legacyIcon: false,
-            lowResolutionIcons: false,
-          },
-        },
-        safariPinnedTab: {
-          pictureAspect: 'blackAndWhite',
-          threshold: 50,
-          themeColor: '#5e9cb8',
-        },
-      },
-      settings: {
-        scalingAlgorithm: 'Mitchell',
-        errorOnImageTooSmall: false,
-        readmeFile: false,
-        htmlCodeFile: false,
-        usePathAsIs: false,
-      },
-      markupFile: FAVICON_DATA_FILE,
-    },
-    () => {
-      done();
-    }
-  );
-}
-
-// Inject the favicon markups in your HTML pages. You should run
-// this task whenever you modify a page. You can keep this task
-// as is or refactor your existing HTML pipeline.
-
-function injectFaviconMarkups() {
-  return src(['src/*.html'])
-    .pipe(
-      realFavicon.injectFaviconMarkups(
-        JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code
-      )
-    )
-    .pipe(dest('dist'));
-}
-
-// Check for updates on RealFaviconGenerator (think: Apple has just
-// released a new Touch icon along with the latest version of iOS).
-// Run this task from time to time. Ideally, make it part of your
-// continuous integration system.
-function checkForFaviconUpdate() {
-  const currentVersion = JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).version;
-  realFavicon.checkForUpdates(currentVersion, (err) => {
-    if (err) {
-      throw err;
-    }
   });
 }
 
@@ -373,9 +231,6 @@ exports.fonts = fonts;
 exports.data = data;
 exports.clean = clean;
 exports.watch = watchFiles;
-exports.generateFavicon = generateFavicon;
-exports.injectFaviconMarkups = injectFaviconMarkups;
-exports.checkForFaviconUpdate = checkForFaviconUpdate;
 
 /* ====================  dev  ===================== */
 
