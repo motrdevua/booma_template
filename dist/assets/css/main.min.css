@@ -4045,6 +4045,36 @@ a[data-title]:hover::after {
   line-height: 1.4;
 }
 
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.75);
+  text-align: center;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+.modal::before {
+  display: inline-block;
+  height: 100%;
+  content: "";
+  vertical-align: middle;
+}
+
+.modal__inner {
+  position: relative;
+  display: inline-block;
+  margin: 30px auto;
+  width: 500px;
+  vertical-align: middle;
+}
+
 /* ======================  Media  ========================= */
 /*==========  Desktop First  ==========*/
 /*==========  Mobile First  ==========*/

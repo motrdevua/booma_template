@@ -1,8 +1,7 @@
 import $ from 'jquery';
-import Popup from './popup';
+import modal from './modal';
 
-const content = 'asdjkhaskldhkasjjdhashkljd';
 window.addEventListener('load', () => {
-  const popup = new Popup(content);
-  popup.open();
+  console.log($);
+  modal();
 });
