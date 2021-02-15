@@ -16,6 +16,7 @@ const stream = require('webpack-stream');
 
 const dev = plugin.environments.development;
 const prod = plugin.environments.production;
+const fs = require('fs');
 
 const onError = (err) => {
   plugin.notify.onError({
@@ -123,11 +124,7 @@ function styles() {
     src(`${path.src.styles}*.+(scss|sass)`)
       .pipe(dev(plugin.sourcemaps.init()))
       .pipe(plugin.plumber({ errorHandler: onError }))
-      .pipe(
-        plugin.sass
-          .sync({ outputStyle: 'expanded' })
-          .on('error', plugin.sass.logError)
-      )
+      .pipe(plugin.sass.sync({ outputStyle: 'expanded' }))
       .pipe(plugin.autoprefixer())
       // .pipe(plugin.gcmq())
       .pipe(plugin.csso({ restructure: false }))
@@ -153,11 +150,7 @@ function js() {
 function img() {
   return src(`${path.src.img}**/*.{png,jpg,jpeg}`)
     .pipe(plugin.plumber({ errorHandler: onError }))
-    .pipe(
-      plugin.webp({
-        quality: 95,
-      })
-    )
+    .pipe(plugin.webp({ quality: 100 }))
     .pipe(dest(`${path.app.assets}images`))
     .pipe(src(`${path.src.img}**/*.{png,jpg,jpeg}`))
     .pipe(
@@ -174,22 +167,44 @@ function img() {
     .pipe(dest(`${path.app.assets}images`));
 }
 
-/* ===================  fontgen  ================== */
-
-function fontgen() {
-  return src(`${path.src.fonts}**/*.ttf`)
-    .pipe(plugin.fontmin())
-    .pipe(plugin.ttf2woff2())
-    .pipe(dest(path.src.fonts));
-}
-
 /* ====================  fonts  =================== */
 
 function fonts() {
-  return src(`${path.src.fonts}**/*.{svg,eot,ttf,woff,woff2}`).pipe(
-    dest(`${path.app.assets}fonts`)
-  );
+  return src(`${path.src.fonts}**/*.ttf`)
+    .pipe(plugin.ttf2woff())
+    .pipe(dest(`${path.app.assets}fonts`))
+    .pipe(src(`${path.src.fonts}**/*.ttf`))
+    .pipe(plugin.ttf2woff2())
+    .pipe(dest(`${path.app.assets}fonts`));
 }
+
+const cb = () => {};
+const fontsStyleSheet = `${path.src.styles}utils/_fontstylesheet.scss`;
+const fontsPath = `${path.app.assets}fonts`;
+
+const fontsStyle = (done) => {
+  fs.readFileSync(fontsStyleSheet);
+  fs.writeFile(fontsStyleSheet, '', cb);
+  fs.readdir(fontsPath, (err, items) => {
+    if (items) {
+      let cFontname;
+      for (let i = 0; i < items.length; i += 1) {
+        let fontname = items[i].split('.');
+        [fontname] = fontname;
+        if (cFontname !== fontname) {
+          fs.appendFile(
+            fontsStyleSheet,
+            `@include font-face("./${fontsPath}${fontname}", "${fontname}", 400);\r\n`,
+            cb
+          );
+        }
+        cFontname = fontname;
+      }
+    }
+  });
+
+  done();
+};
 
 /* =====================  data  =================== */
 
@@ -204,6 +219,7 @@ function watchFiles() {
   watch(path.src.root, styles);
   watch(path.src.js, js);
   watch(path.src.img, img);
+  watch(path.src.fonts, series(fonts, fontsStyle));
   watch(path.src.data, data);
 }
 
@@ -211,11 +227,7 @@ function watchFiles() {
 
 function clean() {
   plugin.cache.clearAll();
-  return del([
-    path.app.root,
-    `${path.src.fonts}**/*.css`,
-    `${path.src.img}/.tinypng-sigs`,
-  ]).then((dir) => {
+  return del([path.app.root, `${path.src.img}/.tinypng-sigs`]).then((dir) => {
     console.log('Deleted files and folders:\n', dir.join('\n'));
   });
 }
@@ -226,8 +238,8 @@ exports.html = html;
 exports.styles = styles;
 exports.js = js;
 exports.img = img;
-exports.fontgen = fontgen;
 exports.fonts = fonts;
+exports.fontsStyle = fontsStyle;
 exports.data = data;
 exports.clean = clean;
 exports.watch = watchFiles;
@@ -236,10 +248,17 @@ exports.watch = watchFiles;
 
 exports.default = series(
   clean,
-  parallel(html, styles, js, img, fonts, data),
+  fonts,
+  fontsStyle,
+  parallel(html, styles, js, img, data),
   parallel(watchFiles, serve)
 );
 
 /* ===================  build  ==================== */
 
-exports.build = series(clean, parallel(html, styles, js, img, fonts, data));
+exports.build = series(
+  clean,
+  fonts,
+  fontsStyle,
+  parallel(html, styles, js, img, data)
+);

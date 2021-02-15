@@ -12,8 +12,8 @@ $container-max-widths: (sm: 540px, md: 720px, lg: 960px, xl: 1170px);
 
 /* ========================  Utils  ======================== */
 
-// @import "utils/mixin_font-face";
-// @import "utils/fontstylesheet";
+@import "utils/_mixin_font-face";
+@import "utils/fontstylesheet";
 
 @import "utils/variables";
 
