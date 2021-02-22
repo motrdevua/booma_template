@@ -8,7 +8,7 @@ a[data-title] {
     padding: 2px 4px 4px;
     border-radius: 2px;
     background: darken($white, 10%);
-    color: $grey;
+    color: #000000;
     content: attr(data-title);
     font-size: 11px;
     line-height: 1;
@@ -31,4 +31,5 @@ a[data-title] {
     }
   }
 }
+
 /*! link title end */

@@ -11,9 +11,6 @@ const del = require('del');
 
 const browserSync = require('browser-sync').create();
 
-const webpack = require('webpack');
-const stream = require('webpack-stream');
-
 const dev = plugin.environments.development;
 const prod = plugin.environments.production;
 const fs = require('fs');
@@ -40,46 +37,6 @@ const path = {
   app: {
     root: 'app/',
     assets: 'app/assets/',
-  },
-};
-
-/* ===============   webpackConfig  =============== */
-
-const webpackConfig = {
-  mode: dev() ? 'development' : 'production',
-  output: {
-    filename: `[name].js`,
-  },
-  devtool: dev() ? 'eval-source-map' : 'none',
-  optimization: {
-    minimize: true,
-    splitChunks: {
-      chunks: 'all',
-    },
-  },
-  module: {
-    rules: [
-      {
-        test: /\.m?js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-          },
-        },
-      },
-    ],
-  },
-  plugins: [
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery',
-    }),
-  ],
-  resolve: {
-    modules: ['node_modules'],
   },
 };
 
@@ -136,10 +93,22 @@ function styles() {
 }
 
 /* =====================  js  ===================== */
+
 function js() {
-  return src(`${path.src.js}main.js`)
+  return src(`${path.src.js}*.js`)
+    .pipe(dev(plugin.sourcemaps.init()))
     .pipe(plugin.plumber({ errorHandler: onError }))
-    .pipe(stream(webpackConfig))
+    .pipe(
+      plugin.include({
+        includePaths: [
+          `${__dirname}/node_modules/`,
+          `${__dirname}/${path.src.js}`,
+        ],
+      })
+    )
+    .pipe(plugin.babel({ presets: ['@babel/env'] }))
+    .pipe(plugin.terser())
+    .pipe(dev(plugin.sourcemaps.write('.')))
     .pipe(plugin.rename({ suffix: '.min' }))
     .pipe(dest(`${path.app.assets}js`))
     .pipe(browserSync.reload({ stream: true }));
@@ -194,7 +163,7 @@ const fontsStyle = (done) => {
         if (cFontname !== fontname) {
           fs.appendFile(
             fontsStyleSheet,
-            `@include font-face("./${fontsPath}${fontname}", "${fontname}", 400);\r\n`,
+            `@include font-face("../fonts/${fontname}", "${fontname}", 400);\r\n`,
             cb
           );
         }
@@ -212,6 +181,12 @@ function data() {
   return src(`${path.src.data}**/*`).pipe(dest(`${path.app.assets}data`));
 }
 
+/* =====================  favicon  =================== */
+
+function favicon() {
+  return src(`${path.src.root}favicon.*`).pipe(dest(`${path.app.root}`));
+}
+
 /* ====================  watch  =================== */
 
 function watchFiles() {
@@ -220,6 +195,7 @@ function watchFiles() {
   watch(path.src.js, js);
   watch(path.src.img, img);
   watch(path.src.fonts, series(fonts, fontsStyle));
+  watch(path.src.root, favicon);
   watch(path.src.data, data);
 }
 
@@ -243,6 +219,7 @@ exports.fontsStyle = fontsStyle;
 exports.data = data;
 exports.clean = clean;
 exports.watch = watchFiles;
+exports.favicon = favicon;
 
 /* ====================  dev  ===================== */
 
@@ -250,7 +227,7 @@ exports.default = series(
   clean,
   fonts,
   fontsStyle,
-  parallel(html, styles, js, img, data),
+  parallel(html, styles, js, img, data, favicon),
   parallel(watchFiles, serve)
 );
 
@@ -260,5 +237,5 @@ exports.build = series(
   clean,
   fonts,
   fontsStyle,
-  parallel(html, styles, js, img, data)
+  parallel(html, styles, js, img, data, favicon)
 );
