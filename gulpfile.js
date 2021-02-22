@@ -25,6 +25,13 @@ const onError = (err) => {
   this.emit('end');
 };
 
+const gzipOptions = {
+  threshold: '1kb',
+  gzipOptions: {
+    level: 9,
+  },
+};
+
 const path = {
   src: {
     root: 'src/',
@@ -87,6 +94,7 @@ function styles() {
       .pipe(plugin.csso({ restructure: false }))
       .pipe(dev(plugin.sourcemaps.write('.')))
       .pipe(plugin.rename({ suffix: '.min' }))
+      .pipe(prod(plugin.gzip(gzipOptions)))
       .pipe(dest(`${path.app.assets}css`))
       .pipe(browserSync.stream())
   );
@@ -154,7 +162,7 @@ const fontsPath = `${path.app.assets}fonts`;
 const fontsStyle = (done) => {
   fs.readFileSync(fontsStyleSheet);
   fs.writeFile(fontsStyleSheet, '', cb);
-  fs.readdir(fontsPath, (err, items) => {
+  fs.readdir(fontsPath, (items) => {
     if (items) {
       let cFontname;
       for (let i = 0; i < items.length; i += 1) {

@@ -42,8 +42,14 @@ html, body {
 
 body {
   min-height: 100vh;
-  font-size: 20px;
+  background-color: $pagebg;
+  color: $main;
+  letter-spacing: -.022em;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 17px;
   font-family: $default-font;
+  line-height: 1.47059;
 
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
@@ -60,11 +66,16 @@ body {
 
 .content {
   flex: 1 0 auto;
+  margin: 70px 0 0 0;
 }
 
 .header, .footer {
   flex: 0 0 auto;
+  background: $grey;
+  color: darken($white, 10%);
+  font-size: 12px;
 }
+
 
 .img-wrap {
   display: flex;
@@ -81,89 +92,21 @@ body {
   }
 }
 
-.section {
-  position: relative;
-  z-index: 1;
-  padding: 100px 0;
-
-  &__suptitle {
-    color: $blue;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 22px;
-    font-family: $fontRobotoR;
-    line-height: 40px;
-  }
-
-  &__title {
-    color: $white;
-    letter-spacing: .5px;
-    font-size: 52px;
-    font-family: $fontRubikB;
-    line-height: 62px;
-
-    &--mod {
-      color: $accent;
-    }
-  }
-
-  &__subtitle {
-    color: #c4c4c4;
-    text-align: center;
-    font-size: 22px;
-    font-family: $fontRobotoR;
-    line-height: 35px;
-
-    &--mod {
-      color: $accent;
-      text-transform: uppercase;
-    }
-  }
-}
-
-.content.active {
-  margin: 0 0 0 80%;
-}
-
-.footer.active {
-  margin: 0 0 0 80%;
-}
-
 /*! ===================  Defaults end  ===================== */
 
 /* =====================  Blocks  ======================== */
 
-@import "_link-title";
+@import "link-title";
+@import "buttons";
+@import "youtube";
 
-@import "./youtube";
-@import "../../blocks/header/_button";
-@import "../../blocks/header/_navigation-effect";
-@import "../../blocks/form/_checkbox";
-
-@import "../../blocks/header/_header";
-@import "../../blocks/first-screen/_first-screen";
-@import "../../blocks/form/_form";
-@import "../../blocks/about/_about";
-@import "../../blocks/students/_students";
-@import "../../blocks/contents/_contents";
-@import "../../blocks/bonus/_bonus";
-@import "../../blocks/footer/_footer";
-@import "../../blocks/lesson/_lesson";
+@import "../../blocks/checkbox/_checkbox";
 @import "../../blocks/modal/_modal";
 
-/*! parsley */
-.parsley-errors-list.filled {
-  position: absolute;
-  bottom: -17px;
-  left: 5px;
-  padding: 0 6px 2px;
-  border-radius: 0 0 4px 4px;
-  background: #ff8100;
-  color: #ffffff;
-  font-size: 13px;
-}
+@import "../../blocks/ru/header/_header";
+;
+@import "../../blocks/ru/footer/_footer";
 
-/*! parsley end */
 /* ======================  Media  ========================= */
 
 @import "media";

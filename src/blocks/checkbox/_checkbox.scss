@@ -1,0 +1,73 @@
+/*! checkbox */
+.checkbox_container {
+  margin: 0 0 40px 0;
+
+  & input {
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+
+  & input:checked+label svg path {
+    stroke-dashoffset: 0;
+  }
+
+  & input:checked+label svg {
+    border: 3px solid #ffc000;
+    transition: all 350ms cubic-bezier(1, 0, .37, .91);
+    -webkit-transform: scale(1.03);
+            transform: scale(1.03);
+  }
+
+  & input:focus+label svg {
+    -webkit-transform: scale(1.03);
+            transform: scale(1.03);
+  }
+
+  & label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+  }
+
+  & label svg {
+    margin: 0 15px 0 0;
+    min-width: 24px;
+    width: 24px;
+    height: 24px;
+    border: 3px solid #ffffff;
+    border-radius: 2px;
+    transition: all 350ms cubic-bezier(1, 0, .37, .91);
+  }
+
+  & label span {
+    color: #cfcfcf;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 100%;
+  }
+
+  & label:active svg {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+
+  & label svg {
+    pointer-events: none;
+  }
+
+  & label svg path {
+    transition: all 350ms cubic-bezier(1, 0, .37, .91);
+
+    fill: none;
+    stroke: #ffc000;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 101;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3px;
+  }
+}
+
+/*! checkbox end */
