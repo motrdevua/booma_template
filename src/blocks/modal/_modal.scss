@@ -24,7 +24,6 @@
   top: 15px;
   right: 15px;
   z-index: 9;
-  display: block;
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -32,52 +31,53 @@
   transition: .2s ease-in-out;
   -webkit-transform: rotate(0deg) scale(1);
           transform: rotate(0deg) scale(1);
+
+  &::after, &::before {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    display: block;
+    width: 32px;
+    height: 3px;
+    border-radius: 4px;
+    background: #444444;
+    content: "";
+    transition: .2s ease-in-out;
+  }
+
+  &::before {
+    -webkit-transform: translate(50%, -50%) rotate(45deg);
+            transform: translate(50%, -50%) rotate(45deg);
+  }
+
+  &::after {
+    -webkit-transform: translate(50%, -50%) rotate(135deg);
+            transform: translate(50%, -50%) rotate(135deg);
+  }
+
+  &:hover {
+    transition: .2s ease-in-out;
+    -webkit-transform: rotate(90deg) scale(1);
+            transform: rotate(90deg) scale(1);
+  }
+
+  &:hover::after, &:hover::before {
+    background: #333333;
+    transition: .2s ease-in-out;
+  }
+
+  &:active {
+    transition: .2s ease-in-out;
+    -webkit-transform: rotate(90deg) scale(.76);
+            transform: rotate(90deg) scale(.76);
+  }
+
+  &:active::before, &:active::after {
+    background: #444444;
+    transition: .2s ease-in-out;
+  }
 }
 
-.modal__close::after, .modal__close::before {
-  position: absolute;
-  top: 50%;
-  right: 50%;
-  display: block;
-  width: 32px;
-  height: 3px;
-  border-radius: 4px;
-  background: #444444;
-  content: "";
-  transition: .2s ease-in-out;
-}
-
-.modal__close::before {
-  -webkit-transform: translate(50%, -50%) rotate(45deg);
-          transform: translate(50%, -50%) rotate(45deg);
-}
-
-.modal__close::after {
-  -webkit-transform: translate(50%, -50%) rotate(135deg);
-          transform: translate(50%, -50%) rotate(135deg);
-}
-
-.modal__close:hover {
-  transition: .2s ease-in-out;
-  -webkit-transform: rotate(90deg) scale(1);
-          transform: rotate(90deg) scale(1);
-}
-
-.modal__close:hover::after, .modal__close:hover::before {
-  background: #ffffff;
-  transition: .2s ease-in-out;
-}
-
-.modal__close:active {
-  transition: .2s ease-in-out;
-  -webkit-transform: rotate(90deg) scale(.76);
-          transform: rotate(90deg) scale(.76);
-}
-
-.modal__close:active::before, .modal__close:active::after {
-  background: #444444;
-  transition: .2s ease-in-out;
-}
 
 @media screen and (max-width:576px) {
   .modal__close {

@@ -4,6 +4,7 @@ const plugin = require('gulp-load-plugins')({
     'gulp-group-css-media-queries': 'gcmq',
     'gulp-webp-in-html': 'GulpWebpHtml2',
     'gulp-tinypng-extended': 'tinypng',
+    'gulp-clean-css': 'cleanCSS',
   },
 });
 
@@ -23,13 +24,6 @@ const onError = (err) => {
     onLast: true,
   })(err);
   this.emit('end');
-};
-
-const gzipOptions = {
-  threshold: '1kb',
-  gzipOptions: {
-    level: 9,
-  },
 };
 
 const path = {
@@ -91,10 +85,27 @@ function styles() {
       .pipe(plugin.sass.sync({ outputStyle: 'expanded' }))
       .pipe(plugin.autoprefixer())
       // .pipe(plugin.gcmq())
-      .pipe(plugin.csso({ restructure: false }))
+      .pipe(
+        plugin.cleanCSS(
+          {
+            level: 2,
+            format: {
+              breaks: { afterComment: true, beforeBlockEnds: true },
+              wrapAt: 120,
+            },
+          },
+          (details) => {
+            console.log(
+              `originalSize of ${details.name}: ${details.stats.originalSize}`
+            );
+            console.log(
+              `minifiedSize of ${details.name}: ${details.stats.minifiedSize}`
+            );
+          }
+        )
+      )
       .pipe(dev(plugin.sourcemaps.write('.')))
       .pipe(plugin.rename({ suffix: '.min' }))
-      .pipe(prod(plugin.gzip(gzipOptions)))
       .pipe(dest(`${path.app.assets}css`))
       .pipe(browserSync.stream())
   );

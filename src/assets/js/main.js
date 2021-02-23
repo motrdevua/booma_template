@@ -3,71 +3,76 @@ const clickEvent =
   ua.match(/iPad/i) || ua.match(/iPhone/) ? 'touchstart' : 'click';
 const paddingOffset = `${window.innerWidth - document.body.offsetWidth}px`;
 
-const buttonOpenModal = document.querySelectorAll('.button-open-modal');
-const modalContent = document.querySelectorAll('.modal');
+const buttonOpenModal = document.querySelectorAll('.modal__open');
+const modalContent = document.querySelectorAll('[data-windowid]');
 let contentHTML = '';
-console.log(modalContent);
 
 class Modal {
   constructor(content) {
     const wrapper = document.querySelector('.wrapper');
-    const popup = this;
+    const modal = this;
 
-    popup.popOverlay = document.createElement('div');
-    popup.modal = document.createElement('div');
-    popup.content = document.createElement('div');
-    popup.clsBtn = document.createElement('div');
+    modal.create = function () {
+      modal.overlay = document.createElement('div');
+      modal.window = document.createElement('div');
+      modal.content = document.createElement('div');
+      modal.closeButton = document.createElement('div');
 
-    popup.popOverlay.classList.add('popup-overlay');
-    popup.modal.classList.add('popup-modal');
-    popup.modal.classList.add('popup-modal-form');
-    popup.content.classList.add('popup-content');
-    popup.clsBtn.classList.add('modal__close');
+      modal.overlay.classList.add('modal-overlay');
+      modal.window.classList.add('modal');
+      modal.content.classList.add('modal__content');
+      modal.closeButton.classList.add('modal__close');
 
-    document.body.insertBefore(popup.popOverlay, wrapper);
-    document.body.insertBefore(popup.modal, wrapper);
-    popup.modal.appendChild(popup.content);
+      document.body.insertBefore(modal.overlay, wrapper);
+      document.body.insertBefore(modal.window, wrapper);
+      modal.window.appendChild(modal.content);
+    };
 
-    popup.open = function () {
-      popup.popOverlay.classList.add('popup-overlay-active');
-      popup.modal.classList.add('popup-modal-active');
-      popup.clsBtn.classList.add('modal__close--active');
+    modal.open = function () {
+      modal.overlay.classList.add('modal-overlay-active');
+      modal.window.classList.add('modal-active');
+      modal.closeButton.classList.add('modal__close-active');
 
-      popup.content.innerHTML = content;
+      modal.content.innerHTML = content;
 
-      popup.content.children[0].appendChild(popup.clsBtn);
+      console.log(modal.content);
+
+      modal.content.children[0].appendChild(modal.closeButton);
 
       document.querySelector('.header').style.paddingRight = paddingOffset;
       document.body.style.overflow = 'hidden';
       document.body.style.paddingRight = paddingOffset;
       document.body.style.background = '#1c1c1c';
 
-      return popup;
+      return modal;
     };
 
-    popup.close = function () {
-      popup.popOverlay.classList.remove('popup-overlay-active');
-      popup.modal.classList.remove('popup-modal-active');
-      popup.clsBtn.classList.remove('modal__close--active');
+    modal.close = function () {
+      modal.overlay.classList.remove('modal-overlay-active');
+      modal.modal.classList.remove('modal-active');
+      modal.closeButton.classList.remove('modal__close-active');
 
-      popup.content.innerHTML = '';
+      modal.content.innerHTML = '';
+
       document.body.style.overflow = 'unset';
       document.body.style.paddingRight = '0';
       document.body.style.background = 'none';
       document.querySelector('.header').style.paddingRight = '0';
-      return popup;
+
+      return modal;
     };
 
-    popup.popOverlay.onclick = popup.close;
-    popup.clsBtn.onclick = popup.close;
+    modal.create();
+    modal.overlay.onclick = modal.close;
+    modal.closeButton.onclick = modal.close;
   }
 }
 
 const modal = new Modal(contentHTML);
 
-function addingContent(element) {
+function addingContent(elem) {
   for (let i = 0; i < modalContent.length; i += 1) {
-    if (modalContent[i].dataset.id === element.dataset.modal) {
+    if (modalContent[i].dataset.windowid === elem.dataset.buttonid) {
       contentHTML = modalContent[i].innerHTML;
     }
   }
