@@ -4,10 +4,6 @@
   height: 0;
 }
 
-.wrapper {
-  height: 5000px;
-}
-
 .modal {
   position: absolute;
   top: 50%;
@@ -16,6 +12,7 @@
   display: flex;
   overflow-x: hidden;
   overflow-y: auto;
+  padding: 30px;
   min-height: 150px;
   max-width: calc(100% - 20px);
   max-height: 100vh;
@@ -26,13 +23,12 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
   cursor: auto;
   transition: all .2s ease-in-out;
-  -webkit-transform: translate(-50%, -75%);
-          transform: translate(-50%, -75%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 
-  &-active {
-    transition: all .2s ease-in-out;
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+  &-fade-in {
+    -webkit-animation: modal-fade-in .3s;
+            animation: modal-fade-in .3s;
   }
 
   &__wrapper {
@@ -59,12 +55,12 @@
 
 .modal__close {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 5px;
+  right: 5px;
   z-index: 9;
   z-index: 1002;
-  width: 26px;
-  height: 26px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   cursor: pointer;
   transition: .2s ease-in-out;
@@ -120,5 +116,29 @@
   &:active::before, &:active::after {
     background: #444444;
     transition: .2s ease-in-out;
+  }
+}
+
+@-webkit-keyframes modal-fade-in {
+  0% {
+    top: calc(50% - 50px);
+    opacity: 0;
+  }
+
+  to {
+    top: 50%;
+    opacity: 1;
+  }
+}
+
+@keyframes modal-fade-in {
+  0% {
+    top: calc(50% - 50px);
+    opacity: 0;
+  }
+
+  to {
+    top: 50%;
+    opacity: 1;
   }
 }

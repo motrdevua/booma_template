@@ -8,11 +8,11 @@ const modalContent = document.querySelectorAll('[data-windowid]');
 let contentHTML = '';
 
 class Modal {
-  constructor(content) {
+  constructor() {
     const wrapper = document.querySelector('.wrapper');
     const modal = this;
 
-    modal.create = function () {
+    modal.open = function () {
       modal.wrapper = document.createElement('div');
       modal.window = document.createElement('div');
       modal.content = document.createElement('div');
@@ -27,14 +27,12 @@ class Modal {
       modal.wrapper.appendChild(modal.window);
       modal.window.appendChild(modal.closeButton);
       modal.window.appendChild(modal.content);
-    };
 
-    modal.open = function () {
       modal.wrapper.classList.add('modal__wrapper-active');
-      modal.window.classList.add('modal-active');
+      modal.window.classList.add('modal-fade-in');
       modal.closeButton.classList.add('modal__close-active');
 
-      modal.content.innerHTML = content;
+      modal.content.innerHTML = contentHTML;
 
       document.body.style.overflow = 'hidden';
       document.body.style.paddingRight = paddingOffset;
@@ -45,10 +43,8 @@ class Modal {
 
     modal.close = function () {
       modal.wrapper.classList.remove('modal__wrapper-active');
-      modal.window.classList.remove('modal-active');
       modal.closeButton.classList.remove('modal__close-active');
-
-      modal.content.innerHTML = '';
+      modal.wrapper.remove();
 
       document.body.style.overflow = 'unset';
       document.body.style.paddingRight = '0';
@@ -57,7 +53,6 @@ class Modal {
       return modal;
     };
 
-    modal.create();
     document.addEventListener(clickEvent, (e) => {
       if (e.target === modal.wrapper || e.target === modal.closeButton) {
         modal.close();
@@ -66,23 +61,23 @@ class Modal {
   }
 }
 
-const modal = new Modal(contentHTML);
+const modal = new Modal();
 
-function addingContent(elem) {
+function addingContent(btn) {
   for (let i = 0; i < modalContent.length; i += 1) {
-    if (modalContent[i].dataset.windowid === elem.dataset.buttonid) {
+    if (modalContent[i].dataset.windowid === btn.dataset.buttonid) {
       contentHTML = modalContent[i].innerHTML;
     }
   }
 }
 
-window.addEventListener('load', () => {
-  buttonOpenModal.forEach((button) => {
-    button.addEventListener(clickEvent, (e) => {
-      e.preventDefault();
+buttonOpenModal.forEach((button) => {
+  button.addEventListener(clickEvent, (e) => {
+    e.preventDefault();
 
-      addingContent(button);
-      modal.open();
-    });
+    addingContent(button);
+    modal.open();
   });
 });
+
+window.addEventListener('load', () => {});
