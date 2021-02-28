@@ -13,58 +13,56 @@ class Modal {
     const modal = this;
 
     modal.create = function () {
-      modal.overlay = document.createElement('div');
+      modal.wrapper = document.createElement('div');
       modal.window = document.createElement('div');
       modal.content = document.createElement('div');
       modal.closeButton = document.createElement('div');
 
-      modal.overlay.classList.add('modal-overlay');
+      modal.wrapper.classList.add('modal__wrapper');
       modal.window.classList.add('modal');
       modal.content.classList.add('modal__content');
       modal.closeButton.classList.add('modal__close');
 
-      document.body.insertBefore(modal.overlay, wrapper);
-      document.body.insertBefore(modal.window, wrapper);
+      document.body.insertBefore(modal.wrapper, wrapper);
+      modal.wrapper.appendChild(modal.window);
+      modal.window.appendChild(modal.closeButton);
       modal.window.appendChild(modal.content);
     };
 
     modal.open = function () {
-      modal.overlay.classList.add('modal-overlay-active');
+      modal.wrapper.classList.add('modal__wrapper-active');
       modal.window.classList.add('modal-active');
       modal.closeButton.classList.add('modal__close-active');
 
       modal.content.innerHTML = content;
 
-      console.log(modal.content);
-
-      modal.content.children[0].appendChild(modal.closeButton);
-
-      document.querySelector('.header').style.paddingRight = paddingOffset;
       document.body.style.overflow = 'hidden';
       document.body.style.paddingRight = paddingOffset;
-      document.body.style.background = '#1c1c1c';
+      document.querySelector('.header').style.paddingRight = paddingOffset;
 
       return modal;
     };
 
     modal.close = function () {
-      modal.overlay.classList.remove('modal-overlay-active');
-      modal.modal.classList.remove('modal-active');
+      modal.wrapper.classList.remove('modal__wrapper-active');
+      modal.window.classList.remove('modal-active');
       modal.closeButton.classList.remove('modal__close-active');
 
       modal.content.innerHTML = '';
 
       document.body.style.overflow = 'unset';
       document.body.style.paddingRight = '0';
-      document.body.style.background = 'none';
       document.querySelector('.header').style.paddingRight = '0';
 
       return modal;
     };
 
     modal.create();
-    modal.overlay.onclick = modal.close;
-    modal.closeButton.onclick = modal.close;
+    document.addEventListener(clickEvent, (e) => {
+      if (e.target === modal.wrapper || e.target === modal.closeButton) {
+        modal.close();
+      }
+    });
   }
 }
 
