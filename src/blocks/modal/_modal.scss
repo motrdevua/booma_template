@@ -70,6 +70,8 @@
   transition: .2s ease-in-out;
   -webkit-transform: rotate(0deg) scale(1);
           transform: rotate(0deg) scale(1);
+  -webkit-transform-origin: center;
+          transform-origin: center;
 
   &::after, &::before {
     position: absolute;
@@ -96,8 +98,10 @@
 
   &:hover {
     transition: .2s ease-in-out;
-    -webkit-transform: rotate(90deg) scale(1);
-            transform: rotate(90deg) scale(1);
+    -webkit-transform: rotate(90deg) scale(1.1);
+            transform: rotate(90deg) scale(1.1);
+    -webkit-transform-origin: center;
+            transform-origin: center;
   }
 
   &:hover::after, &:hover::before {
@@ -109,6 +113,8 @@
     transition: .2s ease-in-out;
     -webkit-transform: rotate(90deg) scale(.76);
             transform: rotate(90deg) scale(.76);
+    -webkit-transform-origin: center;
+            transform-origin: center;
   }
 
   &:active::before, &:active::after {
