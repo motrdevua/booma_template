@@ -18,7 +18,7 @@
   pointer-events: auto;
 }
 
-.overlay:target + .popup {
+.overlay:target+.popup {
   top: 50%;
   transition: all .7s cubic-bezier(1, -.65, .49, 1.38);
   -webkit-transform: translate(-50%, -50%);
@@ -115,7 +115,7 @@
   width: 20px;
   height: 3px;
   background: #ffffff;
-  content: '';
+  content: "";
   transition: all .3s ease-in-out;
 }
 

@@ -1,0 +1,116 @@
+@-webkit-keyframes animatePlaceholder {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+@keyframes animatePlaceholder {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+[class*="animated-placeholder"]:empty, [class*=" animated-placeholder"]:empty {
+  position: relative;
+  margin-top: .2em;
+  margin-bottom: .2em;
+  min-width: 40px;
+  min-height: 1em;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #eeeeee 8%, #e4e4e4 18%, #eeeeee 33%);
+  background-size: 1000%;
+  -webkit-animation: animatePlaceholder 1.5s linear infinite forwards;
+          animation: animatePlaceholder 1.5s linear infinite forwards;
+}
+
+.animated-placeholder-w-100 {
+  width: 100% !important;
+}
+
+.animated-placeholder-w-95 {
+  width: 95% !important;
+}
+
+.animated-placeholder-w-90 {
+  width: 90% !important;
+}
+
+.animated-placeholder-w-85 {
+  width: 85% !important;
+}
+
+.animated-placeholder-w-80 {
+  width: 80% !important;
+}
+
+.animated-placeholder-w-75 {
+  width: 75% !important;
+}
+
+.animated-placeholder-w-70 {
+  width: 70% !important;
+}
+
+.animated-placeholder-w-65 {
+  width: 65% !important;
+}
+
+.animated-placeholder-w-60 {
+  width: 60% !important;
+}
+
+.animated-placeholder-w-55 {
+  width: 55% !important;
+}
+
+.animated-placeholder-w-50 {
+  width: 50% !important;
+}
+
+.animated-placeholder-w-45 {
+  width: 45% !important;
+}
+
+.animated-placeholder-w-40 {
+  width: 40% !important;
+}
+
+.animated-placeholder-w-35 {
+  width: 35% !important;
+}
+
+.animated-placeholder-w-30 {
+  width: 30% !important;
+}
+
+.animated-placeholder-w-25 {
+  width: 25% !important;
+}
+
+.animated-placeholder-w-20 {
+  width: 20% !important;
+}
+
+.animated-placeholder-w-15 {
+  width: 15% !important;
+}
+
+.animated-placeholder-w-10 {
+  width: 10% !important;
+}
+
+.animated-placeholder-w-5 {
+  width: 5% !important;
+}
+
+.animated-placeholder-w-0 {
+  width: 0 !important;
+}

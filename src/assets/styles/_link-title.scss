@@ -14,8 +14,8 @@ a[data-title] {
     line-height: 1;
     opacity: 0;
     transition: all .2s ease-in-out;
-    -webkit-transform: translate(-50%, -150%);
-            transform: translate(-50%, -150%);
+    -webkit-transform: translate(-50%, 225%);
+            transform: translate(-50%, 225%);
   }
 
   &:hover::after {

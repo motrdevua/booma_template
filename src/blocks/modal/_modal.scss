@@ -59,25 +59,21 @@
   right: 5px;
   z-index: 9;
   z-index: 1002;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   cursor: pointer;
   transition: .2s ease-in-out;
-  -webkit-transform: rotate(0deg) scale(1);
-          transform: rotate(0deg) scale(1);
-  -webkit-transform-origin: center;
-          transform-origin: center;
 
   &::after, &::before {
     position: absolute;
     top: 50%;
     right: 50%;
     display: block;
-    width: 30px;
+    width: 26px;
     height: 3px;
     border-radius: 4px;
-    background: #444444;
+    background: $grey;
     content: "";
     transition: .2s ease-in-out;
   }
@@ -92,30 +88,24 @@
             transform: translate(50%, -50%) rotate(135deg);
   }
 
-  &:hover {
-    transition: .2s ease-in-out;
-    -webkit-transform: rotate(90deg) scale(1.1);
-            transform: rotate(90deg) scale(1.1);
-    -webkit-transform-origin: center;
-            transform-origin: center;
-  }
-
   &:hover::after, &:hover::before {
-    background: #333333;
+    background: $accent;
     transition: .2s ease-in-out;
-  }
-
-  &:active {
-    transition: .2s ease-in-out;
-    -webkit-transform: rotate(90deg) scale(.76);
-            transform: rotate(90deg) scale(.76);
-    -webkit-transform-origin: center;
-            transform-origin: center;
   }
 
   &:active::before, &:active::after {
-    background: #444444;
+    background: lighten($grey, 10%);
     transition: .2s ease-in-out;
+  }
+
+  &:active::after {
+    -webkit-transform: translate(50%, -50%) rotate(135deg) scale(.76);
+            transform: translate(50%, -50%) rotate(135deg) scale(.76);
+  }
+
+  &:active::before {
+    -webkit-transform: translate(50%, -50%) rotate(45deg) scale(.76);
+            transform: translate(50%, -50%) rotate(45deg) scale(.76);
   }
 }
 
