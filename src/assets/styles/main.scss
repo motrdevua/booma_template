@@ -101,11 +101,12 @@ body {
 @import "buttons";
 @import "youtube";
 
-@import "../../blocks/checkbox/_checkbox";
-@import "../../blocks/modal/_modal";
+@import "../../blocks/checkbox/checkbox";
+@import "../../blocks/modal/modal";
 
-@import "../../blocks/ru/header/_header";
-@import "../../blocks/ru/footer/_footer";
+@import "../../blocks/ru/header/header";
+@import "../../blocks/ru/footer/footer";
+@import "../../blocks/ru/form/form";
 
 /* ======================  Media  ========================= */
 

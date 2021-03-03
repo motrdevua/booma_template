@@ -30,7 +30,7 @@ const path = {
   src: {
     root: 'src/',
     js: 'src/assets/js/',
-    img: 'src/assets/images/',
+    img: 'src/assets/img/',
     fonts: 'src/assets/fonts/',
     styles: 'src/assets/styles/',
     data: 'src/assets/data/',
@@ -133,26 +133,26 @@ function js() {
     .pipe(browserSync.reload({ stream: true }));
 }
 
-/* ===================  images  =================== */
+/* ===================  img  =================== */
 
 function img() {
   return src(`${path.src.img}**/*.{png,jpg,jpeg}`)
     .pipe(plugin.plumber({ errorHandler: onError }))
     .pipe(plugin.webp({ quality: 100 }))
-    .pipe(dest(`${path.app.assets}images`))
+    .pipe(dest(`${path.app.assets}img`))
     .pipe(src(`${path.src.img}**/*.{png,jpg,jpeg}`))
     .pipe(
       prod(
         plugin.tinypng({
           key: 'JBK36rHvht6hyW3MM7jQYzbx53hgWF2R',
-          sigFile: './src/assets/images/.tinypng-sigs',
+          sigFile: './src/assets/img/.tinypng-sigs',
           log: true,
         })
       )
     )
-    .pipe(dest(`${path.app.assets}images`))
+    .pipe(dest(`${path.app.assets}img`))
     .pipe(src(`${path.src.img}**/*.svg`))
-    .pipe(dest(`${path.app.assets}images`));
+    .pipe(dest(`${path.app.assets}img`));
 }
 
 /* ====================  fonts  =================== */
