@@ -13,7 +13,7 @@
   }
 
   & input:checked+label svg {
-    border: 3px solid #ffc000;
+    border: 3px solid $accent;
     transition: all 350ms cubic-bezier(1, 0, .37, .91);
     -webkit-transform: scale(1.03);
             transform: scale(1.03);
@@ -61,7 +61,7 @@
     transition: all 350ms cubic-bezier(1, 0, .37, .91);
 
     fill: none;
-    stroke: #ffc000;
+    stroke: $accent;
     stroke-dasharray: 100;
     stroke-dashoffset: 101;
     stroke-linecap: round;
