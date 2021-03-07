@@ -35,9 +35,9 @@ const path = {
     styles: 'src/assets/styles/',
     data: 'src/assets/data/',
   },
-  app: {
-    root: 'app/',
-    assets: 'app/assets/',
+  dist: {
+    root: 'dist/',
+    assets: 'dist/assets/',
   },
 };
 
@@ -45,7 +45,7 @@ const path = {
 
 function serve() {
   browserSync.init({
-    server: path.app.root,
+    server: path.dist.root,
     // tunnel: 'project', // Demonstration page: http://project.localtunnel.me
     // online: false, // Work Offline Without Internet Connection
   });
@@ -66,7 +66,7 @@ function html() {
         })
       )
       // .pipe(plugin.GulpWebpHtml2())
-      .pipe(dest(path.app.root))
+      .pipe(dest(path.dist.root))
       .pipe(
         browserSync.reload({
           stream: true,
@@ -106,7 +106,7 @@ function styles() {
       )
       .pipe(dev(plugin.sourcemaps.write('.')))
       .pipe(plugin.rename({ suffix: '.min' }))
-      .pipe(dest(`${path.app.assets}css`))
+      .pipe(dest(`${path.dist.assets}css`))
       .pipe(browserSync.stream())
   );
 }
@@ -129,7 +129,7 @@ function js() {
     .pipe(plugin.terser())
     .pipe(dev(plugin.sourcemaps.write('.')))
     .pipe(plugin.rename({ suffix: '.min' }))
-    .pipe(dest(`${path.app.assets}js`))
+    .pipe(dest(`${path.dist.assets}js`))
     .pipe(browserSync.reload({ stream: true }));
 }
 
@@ -139,7 +139,7 @@ function img() {
   return src(`${path.src.img}**/*.{png,jpg,jpeg}`)
     .pipe(plugin.plumber({ errorHandler: onError }))
     .pipe(plugin.webp({ quality: 100 }))
-    .pipe(dest(`${path.app.assets}img`))
+    .pipe(dest(`${path.dist.assets}img`))
     .pipe(src(`${path.src.img}**/*.{png,jpg,jpeg}`))
     .pipe(
       prod(
@@ -150,9 +150,9 @@ function img() {
         })
       )
     )
-    .pipe(dest(`${path.app.assets}img`))
-    .pipe(src(`${path.src.img}**/*.svg`))
-    .pipe(dest(`${path.app.assets}img`));
+    .pipe(dest(`${path.dist.assets}img`))
+    .pipe(src(`${path.src.img}**/*.+(svg|gif)`))
+    .pipe(dest(`${path.dist.assets}img`));
 }
 
 /* ====================  fonts  =================== */
@@ -160,15 +160,15 @@ function img() {
 function fonts() {
   return src(`${path.src.fonts}**/*.ttf`)
     .pipe(plugin.ttf2woff())
-    .pipe(dest(`${path.app.assets}fonts`))
+    .pipe(dest(`${path.dist.assets}fonts`))
     .pipe(src(`${path.src.fonts}**/*.ttf`))
     .pipe(plugin.ttf2woff2())
-    .pipe(dest(`${path.app.assets}fonts`));
+    .pipe(dest(`${path.dist.assets}fonts`));
 }
 
 const cb = () => {};
 const fontsStyleSheet = `${path.src.styles}utils/_fontstylesheet.scss`;
-const fontsPath = `${path.app.assets}fonts`;
+const fontsPath = `${path.dist.assets}fonts`;
 
 const fontsStyle = (done) => {
   fs.readFileSync(fontsStyleSheet);
@@ -180,7 +180,7 @@ const fontsStyle = (done) => {
         let fontname = items[i].split('.');
         [fontname] = fontname;
         if (cFontname !== fontname) {
-          fs.appendFile(
+          fs.distendFile(
             fontsStyleSheet,
             `@include font-face("../fonts/${fontname}", "${fontname}", 400);\r\n`,
             cb
@@ -197,13 +197,13 @@ const fontsStyle = (done) => {
 /* =====================  data  =================== */
 
 function data() {
-  return src(`${path.src.data}**/*`).pipe(dest(`${path.app.assets}data`));
+  return src(`${path.src.data}**/*`).pipe(dest(`${path.dist.assets}data`));
 }
 
 /* =====================  favicon  =================== */
 
 function favicon() {
-  return src(`${path.src.root}favicon.*`).pipe(dest(`${path.app.root}`));
+  return src(`${path.src.root}favicon.*`).pipe(dest(`${path.dist.root}`));
 }
 
 /* ====================  watch  =================== */
@@ -222,7 +222,7 @@ function watchFiles() {
 
 function clean() {
   plugin.cache.clearAll();
-  return del([path.app.root, `${path.src.img}/.tinypng-sigs`]).then((dir) => {
+  return del([path.dist.root, `${path.src.img}/.tinypng-sigs`]).then((dir) => {
     console.log('Deleted files and folders:\n', dir.join('\n'));
   });
 }

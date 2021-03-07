@@ -1,9 +1,22 @@
-<section class="form__wrapper" id="form__wrapper">
+<div class="form__wrapper" id="form__wrapper">
 
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-xl-6 col-lg-7 col-md-9 col-sm-11 col-12 pl-0 pr-0 pl-lg-3 pr-lg-3 pr-md-3 pl-md-3">
-        <div class="basket"></div>
+      <div class="col-xl-6 col-lg-7 col-md-9 col-sm-11 col-12 d-flex justify-content-center">
+        <div class="form-price__wrapper">
+          <div class="form-price__box">
+            <span class="form-price__text">цена сейчас:</span>
+            <div class="form-price__price form-price__price--new">
+              <span class="price_block" data-discount="">15000</span>
+              <span>₪</span>
+            </div>
+            <div class="form-price__price  form-price__price--old">
+              <span class="price_block">8900</span>
+              <span>₪</span>
+            </div>
+          </div>
+          <p class="installment-plan"></p>
+        </div>
       </div>
     </div>
   </div>
@@ -11,50 +24,40 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-xl-6 col-lg-7 col-md-9 col-sm-11 col-12 pl-0 pr-0 pl-lg-3 pr-lg-3 pr-md-3 pl-md-3">
-        <div class="form-price--wrapper">
-          <div class="productPrice_container">
-            <p>
-              цена
-              <br>
-              сейчас: &nbsp;
-              <strong class="price red_price" style="display: inline;">
-                <span class="price_block" data-discount=""></span>
-              </strong>
-              <strong class="old_price form-old-price sale">
-                <span class="price_block"></span>
-              </strong>
-            </p>
-          </div>
-          <p class="credit_type" id="credit_type"></p>
-        </div>
+        <div class="form__holder">
 
-        <div class="wrapper" id="wrapper">
+          <div class="form__tabs"></div>
 
-          <div class="tabs" style="display: none;">
+
+
+
+          <div class="tabs">
             <div class="tab pay_call__tab active" data-tab="consultant_payment">
               <div class="tab_text">
-                //=include assets/img/form/icon-callcenter.svg
-                <p>Отдел<br> заказов</p>
+                //=include assets/img/svg/form/callcenter.svg
+                <p>Отдел заказов</p>
               </div>
             </div>
 
-            <div class="or" id="or">
-              <img src="assets/img/form/or_RU.gif" alt="or">
+            <div class="or img-wrap" id="or">
+              <img src="assets/img/or_RU.gif" alt="or">
             </div>
 
             <div class="tab pay_card__tab" data-tab="cc_payment">
               <div class="tab_text">
-                //=include assets/img/form/icon-pay-percent.svg
-                <p>Оплата<br> онлайн</p>
+                //=include assets/img/svg/form/pay-percent.svg
+                <p>Оплата онлайн</p>
               </div>
             </div>
           </div>
 
           <div class="tab_content">
+
             <div class="tab_item" id="consultant_payment">
               <div class="tab_item_content">
                 <div class="call_form">
                   <p class="call_form__subtitle">Оставьте свои данные и оператор перезвонит Вам в течение 1 дня.</p>
+
                   <form accept-charset="UTF-8" autocomplete="on" class="form-container" data-parsley-validate=""
                         method="post" novalidate="" data-formname="bottom_form">
                     <fieldset>
@@ -116,6 +119,7 @@
                 </div>
               </div>
             </div>
+
             <div class="tab_item" id="cc_payment" style="display: none;">
               <div class="tab_item_content">
                 <div class="card_form">
@@ -153,10 +157,11 @@
                 </div>
               </div>
             </div>
+
           </div>
         </div>
 
       </div>
     </div>
   </div>
-</section>
+</div>
