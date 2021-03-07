@@ -11,7 +11,6 @@ const basket = {
 };
 
 // Логика показа и переключения табов в форме
-
 const formWrapper = document.querySelector('#form__wrapper');
 const tabsWrapper = document.querySelector('.tabs');
 

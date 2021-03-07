@@ -59,7 +59,6 @@
 /*! form-price end*/
 
 /*! installment-plan*/
-
 .installment-plan {
   padding: 10px 0 20px;
   color: $grey;
@@ -70,6 +69,196 @@
 }
 
 /*! installment-plan end*/
+
+/*! form__tabs */
+.form {
+  &__tabs {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+
+    & .active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: -1px;
+      min-height: 76px;
+      width: 55%;
+      border-top: 3px solid #1773e1;
+      border-radius: 5px 5px 0 0;
+      background: #ffffff;
+    }
+  }
+
+  &__tab {
+    position: relative;
+    width: 45%;
+    border-radius: 4px 4px 0 0;
+    color: #ffffff;
+    text-align: left;
+    font-weight: 400;
+    font-size: 18px;
+    cursor: pointer;
+  }
+}
+
+.pay_call__tab svg {
+  max-width: 30px;
+}
+
+.pay_card__tab svg {
+  max-height: 25px;
+}
+
+.pay_call__tab p {
+  max-width: 115px;
+}
+
+.pay_card__tab {
+  margin-right: 15px;
+  margin-left: 0;
+}
+
+.pay_card__tab .tab_text {
+  padding: 15px 5px;
+}
+
+.pay_call__tab.active p {
+  max-width: 160px;
+  text-align: center;
+}
+
+.pay_call__tab p {
+  max-width: 144px;
+  text-align: center;
+}
+
+.pay_call__tab {
+  margin-right: 0;
+  margin-left: 15px;
+}
+
+.pay_call__tab .tab_text {
+  padding: 13px 5px;
+}
+
+.tab_text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px 4px 0 0;
+  background: #49525c;
+}
+
+.tab_text p {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.tab svg {
+  fill: #ffffff;
+}
+
+.tab.active svg {
+  fill: #49525c;
+}
+
+.active .tab_text {
+  margin-bottom: -2px;
+  padding: 13px 5px 13px;
+  background: #ffffff;
+}
+
+.active .tab_text p {
+  color: #49525c;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+}
+
+.active {
+  border-top: 1px solid #d1dee7;
+  border-right: 1px solid #d1dee7;
+  border-bottom: 1px solid transparent;
+  border-left: 1px solid #d1dee7;
+}
+
+#form .tab_content {
+  border: 1px solid #d1dee7 !important;
+}
+
+
+
+@media screen and (max-width:576px) {
+  .form__tabs .active {
+    min-height: 69px;
+  }
+
+  .pay_card__tab .tab_text {
+    padding: 15px 5px;
+  }
+
+  .tabs .active {
+    min-height: 69px;
+  }
+
+
+  .tab svg {
+    margin: 0 7px 0 0;
+  }
+
+  .active .tab_text {
+    padding: 10px 0;
+  }
+
+  .active .tab_text p {
+    font-size: 18px;
+    line-height: normal;
+  }
+
+  .pay_card__tab {
+    margin-right: 15px;
+    margin-left: 0;
+  }
+
+  .pay_call__tab {
+    margin-right: 0;
+    margin-left: 15px;
+  }
+
+  .pay_card__tab p {
+    max-width: 88px;
+  }
+
+  .pay_call__tab.active p {
+    max-width: 120px;
+  }
+
+  .tab {
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  .tab_item_content {
+    width: 100%;
+  }
+
+  .tab_text p {
+    padding-left: 0;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width:320px) {
+  .tab {
+    font-weight: 400;
+    font-size: 15px;
+  }
+}
+
+/*! form__tabs end */
+
+
 
 
 
@@ -138,66 +327,6 @@ input:focus::-webkit-input-placeholder {
 
 .formContainer {
   padding-bottom: 45px;
-}
-
-.tabs {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-around;
-}
-
-#form .tab_content {
-  border: 1px solid #d1dee7 !important;
-}
-
-.tab {
-  position: relative;
-  width: 45%;
-  border-radius: 4px 4px 0 0;
-  color: #ffffff;
-  text-align: left;
-  font-weight: 400;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.tabs .active {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: -1px;
-  min-height: 76px;
-  width: 55%;
-  border-top: 3px solid #1773e1;
-  border-radius: 5px 5px 0 0;
-  background: #ffffff;
-}
-
-.tab_text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px 4px 0 0;
-  background: #49525c;
-}
-
-.tab_text p {
-  margin-bottom: 0;
-  padding-left: 20px;
-}
-
-.active .tab_text p {
-  color: #49525c;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 23px;
-}
-
-.active {
-  border-top: 1px solid #d1dee7;
-  border-right: 1px solid #d1dee7;
-  border-bottom: 1px solid transparent;
-  border-left: 1px solid #d1dee7;
 }
 
 .call_form {
@@ -455,42 +584,6 @@ form {
   justify-content: space-around;
 }
 
-.pay_card__tab {
-  margin-right: 15px;
-  margin-left: 0;
-}
-
-.pay_card__tab .tab_text {
-  padding: 15px 5px;
-}
-
-.pay_call__tab.active p {
-  max-width: 160px;
-  text-align: center;
-}
-
-.pay_call__tab p {
-  max-width: 144px;
-  text-align: center;
-}
-
-.pay_call__tab {
-  margin-right: 0;
-  margin-left: 15px;
-}
-
-.pay_call__tab .tab_text {
-  padding: 13px 5px;
-}
-
-.or {
-  max-width: 70px;
-}
-
-.or img {
-  width: 100%;
-}
-
 .call_btn {
   margin: 0 !important;
   padding: 12px 15px;
@@ -532,19 +625,6 @@ form {
   transition: all .2s linear;
 }
 
-.tab svg {
-  fill: #ffffff;
-}
-
-.tab.active svg {
-  fill: #49525c;
-}
-
-.active .tab_text {
-  margin-bottom: -2px;
-  padding: 13px 5px 13px;
-  background: #ffffff;
-}
 
 .card_form {
   padding: 30px 15px 0 15px;
@@ -623,19 +703,6 @@ form {
 }
 
 @media screen and (max-width:576px) {
-  .pay_card__tab .tab_text {
-    padding: 15px 5px;
-  }
-
-  .tabs .active {
-    min-height: 69px;
-  }
-
-
-  .tab svg {
-    margin: 0 7px 0 0;
-  }
-
   iframe {
     height: 1010px;
   }
@@ -651,14 +718,6 @@ form {
     line-height: normal;
   }
 
-  .active .tab_text {
-    padding: 10px 0;
-  }
-
-  .active .tab_text p {
-    font-size: 18px;
-    line-height: normal;
-  }
 
   .privacy-policy__wrapper {
     flex-direction: column;
@@ -706,58 +765,8 @@ form {
     width: 90%;
     height: auto;
   }
-
-  .pay_card__tab {
-    margin-right: 15px;
-    margin-left: 0;
-  }
-
-  .pay_call__tab {
-    margin-right: 0;
-    margin-left: 15px;
-  }
-
-  .pay_card__tab p {
-    max-width: 88px;
-  }
-
-  .pay_call__tab.active p {
-    max-width: 120px;
-  }
-
-  .tab {
-    font-weight: 400;
-    font-size: 16px;
-  }
-
-  .tab_item_content {
-    width: 100%;
-  }
-
-  .tab_text p {
-    padding-left: 0;
-    text-align: center;
-  }
-
-  .pay_call__tab svg {
-    max-width: 30px;
-  }
-
-  .pay_card__tab svg {
-    max-height: 25px;
-  }
-
-  .pay_call__tab p {
-    max-width: 115px;
-  }
 }
 
-@media screen and (max-width:320px) {
-  .tab {
-    font-weight: 400;
-    font-size: 15px;
-  }
-}
 
 /*! form styles*/
 form label {
