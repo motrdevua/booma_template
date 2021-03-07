@@ -1,5 +1,5 @@
 function installmentPlan() {
-  const ccLocalParams = '&cred_type=1';
+  const ccLocalParams = '&cred_type=8&maxpay=12';
   const locationLang = window.location.pathname.split('/')[1];
   const installmentPlanBox = document.querySelector('.installment-plan');
   const installmentPlanMonths = ccLocalParams.split('=')[2];

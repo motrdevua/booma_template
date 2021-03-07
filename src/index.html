@@ -21,7 +21,23 @@
 
   <link rel="shortcut icon" href="favicon.png" type="image/png" />
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.min.css"
+        integrity="sha512-yye/u0ehQsrVrfSd6biT17t39Rg9kNc+vENcCXZuMz2a+LWFGvXUnYuWUW6pbfYj1jcBb/C39UZw2ciQvwDDvg=="
+        crossorigin="anonymous" />
   <link rel="stylesheet" type="text/css" href="assets/css/main.min.css" />
+
+  <style>
+    .iti__flag {
+      background-image: url("https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/img/flags.png");
+    }
+
+    @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+      .iti__flag {
+        background-image: url("https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/img/flags@2x.png");
+      }
+    }
+  </style>
 
 </head>
 
@@ -47,6 +63,16 @@
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
           integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.min.js"
+          integrity="sha512-OnkjbJ4TwPpgSmjXACCb5J4cJwi880VRe+vWpPDlr8M38/L3slN5uUAeOeWU2jN+4vN0gImCXFGdJmc0wO4Mig=="
+          crossorigin="anonymous"></script>
+  <script>
+    var input = document.querySelector(".intl-tel-input");
+    window.intlTelInput(input, {
+      // any initialisation options go here
+    });
+
+  </script>
   <script src="assets/js/main.min.js"></script>
 </body>
 

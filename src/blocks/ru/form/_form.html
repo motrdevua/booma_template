@@ -27,68 +27,59 @@
         <div class="form__holder">
 
           <div class="form__tabs">
-            <div class="form__tab pay_call__tab active" data-tab="consultant_payment">
-              <div class="tab_text">
+            <div class="form__tab form__tab-call active" data-tab="tab-leadform">
+              <div class="img-wrap">
                 //=include assets/img/svg/form/callcenter.svg
-                <p>Отдел заказов</p>
               </div>
+              <span class="form__tab-text">Отдел заказов</span>
             </div>
 
-            <div class="or img-wrap" id="or">
+            <div class="img-wrap" id="or">
               <img src="assets/img/or_RU.gif" alt="or">
             </div>
 
-            <div class="tab pay_card__tab" data-tab="cc_payment">
-              <div class="tab_text">
+            <div class="form__tab form__tab-card" data-tab="tab-tranzilla">
+              <span class="form__tab-discount">-3</span>
+              <div class="img-wrap">
                 //=include assets/img/svg/form/pay-percent.svg
-                <p>Оплата онлайн</p>
               </div>
+              <span class="form__tab-text">Оплата онлайн</span>
             </div>
           </div>
 
           <div class="form__tabs-content">
 
-          </div>
-
-          <div class="tab_content">
-
-            <div class="tab_item" id="consultant_payment">
+            <div class="tab_item" id="tab-leadform">
               <div class="tab_item_content">
                 <div class="call_form">
-                  <p class="call_form__subtitle">Оставьте свои данные и оператор перезвонит Вам в течение 1 дня.</p>
+                  <p class="form__tabs-subtitle">Оставьте свои данные и оператор перезвонит Вам в течение 1 дня.</p>
 
                   <form accept-charset="UTF-8" autocomplete="on" class="form-container" data-parsley-validate=""
                         method="post" novalidate="" data-formname="bottom_form">
                     <fieldset>
                       <div class="form_row">
                         <label class="name_label" for="name">
-                          <span class="red_point"></span>
+                          <input type="text" name="name" class="form-text parsley-error" autocomplete="name"
+                                 data-parsley-error-message="Введите Ваше имя" data-parsley-trigger="change" required=""
+                                 tabindex="5" placeholder="Ваше имя" maxlength="40">
                         </label>
-                        <br>
-                        <input name="name" type="text" class="form-text parsley-error" autocomplete="name"
-                               data-parsley-error-message="Введите Ваше имя" data-parsley-trigger="change" required=""
-                               tabindex="5" size="60" placeholder="Ваше имя" data-parsley-maxlength="40" maxlength="40">
                       </div>
 
                       <div class="form_row telephone_number__wrapper pop">
-
                         <label class="phone_label" for="phone">
-                          <span class="red_point"></span>
-                        </label>
-                        <br>
-                        <div class="intl-tel-input">
-                          <div class="flag-container">
-                            <div class="selected-flag" role="combobox" aria-owns="country-listbox">
+                          <div class="intl-tel-input">
+                            <div class="flag-container">
+                              <div class="selected-flag" role="combobox" aria-owns="country-listbox">
+                              </div>
                             </div>
-                          </div>
 
-                          <input name="phone" type="tel" class="form-text parsley-success phone-input"
-                                 autocomplete="tel" data-parsley-error-message="Введите корректный номер телефона"
-                                 data-parsley-trigger="change" required="" tabindex="6" data-parsley-i18nvalidation=""
-                                 data-parsley-minlength="7" data-parsley-pattern="^\D*(?:\d\D*){7,}$"
-                                 data-intl-tel-input-id="0" placeholder="Телефон" data-parsley-maxlength="15"
-                                 maxlength="15">
-                        </div>
+                            <input name="phone" type="tel" class="form-text parsley-success phone-input"
+                                   autocomplete="tel" data-parsley-error-message="Введите корректный номер телефона"
+                                   data-parsley-trigger="change" required="" tabindex="6" data-parsley-i18nvalidation=""
+                                   data-parsley-minlength="7" data-parsley-pattern="^\D*(?:\d\D*){7,}$"
+                                   data-intl-tel-input-id="0" placeholder="Телефон" maxlength="15">
+                          </div>
+                        </label>
 
                       </div>
 
@@ -119,7 +110,7 @@
               </div>
             </div>
 
-            <div class="tab_item" id="cc_payment" style="display: none;">
+            <div class="tab_item" id="tab-tranzilla" style="display: none;">
               <div class="tab_item_content">
                 <div class="card_form">
                   <div id="form-step1">

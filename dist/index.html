@@ -21,7 +21,23 @@
 
   <link rel="shortcut icon" href="favicon.png" type="image/png" />
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.min.css"
+        integrity="sha512-yye/u0ehQsrVrfSd6biT17t39Rg9kNc+vENcCXZuMz2a+LWFGvXUnYuWUW6pbfYj1jcBb/C39UZw2ciQvwDDvg=="
+        crossorigin="anonymous" />
   <link rel="stylesheet" type="text/css" href="assets/css/main.min.css" />
+
+  <style>
+    .iti__flag {
+      background-image: url("https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/img/flags.png");
+    }
+
+    @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+      .iti__flag {
+        background-image: url("https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/img/flags@2x.png");
+      }
+    }
+  </style>
 
 </head>
 
@@ -138,76 +154,67 @@
               <div class="form__holder">
       
                 <div class="form__tabs">
-                  <div class="form__tab pay_call__tab active" data-tab="consultant_payment">
-                    <div class="tab_text">
+                  <div class="form__tab form__tab-call active" data-tab="tab-leadform">
+                    <div class="img-wrap">
                       <svg width="36" height="40" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18 0c7.59 0 13.765 6.861 13.765 15.294v14.118c0 1.946-1.425 3.53-3.177 3.53s-3.177-1.584-3.177-3.53V17.647c0-1.946 1.425-3.53 3.177-3.53.357 0 .694.081 1.014.202C29.151 7.639 24.125 2.353 18 2.353c-6.122 0-11.146 5.28-11.602 11.956a2.839 2.839 0 011.014-.191c1.751 0 3.176 1.583 3.176 3.53v11.764c0 1.946-1.425 3.53-3.176 3.53-.373 0-.726-.086-1.06-.217v1.393c0 .649.476 1.176 1.06 1.176h7.606c.44-1.366 1.603-2.353 2.982-2.353 1.751 0 3.176 1.584 3.176 3.53C21.176 38.417 19.751 40 18 40c-1.379 0-2.543-.987-2.982-2.353H7.412c-1.752 0-3.177-1.583-3.177-3.53V15.295C4.235 6.861 10.41 0 18 0zM2.118 16.687v13.684C.888 29.884 0 28.591 0 27.06V20c0-1.53.888-2.824 2.118-3.312zM36 20v7.059c0 1.532-.888 2.825-2.118 3.312V16.687C35.112 17.175 36 18.468 36 20z"
                               fill="#49525C" />
                       </svg>
                       
-                      <p>Отдел заказов</p>
                     </div>
+                    <span class="form__tab-text">Отдел заказов</span>
                   </div>
       
-                  <div class="or img-wrap" id="or">
+                  <div class="img-wrap" id="or">
                     <img src="assets/img/or_RU.gif" alt="or">
                   </div>
       
-                  <div class="tab pay_card__tab" data-tab="cc_payment">
-                    <div class="tab_text">
-                      <svg width="58" height="29" viewBox="0 0 58 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10.295 13.852v3.835H0v-3.835h10.295zm8.777 2.206v-3.979h2.564c1.531 0 2.81-.342 3.835-1.025 1.025-.684 1.538-1.702 1.538-3.056 0-1.326-.438-2.324-1.313-2.994-.861-.67-1.975-1.005-3.343-1.005-2.761 0-4.641 1.354-5.64 4.06l-4.613-.8c.52-2.132 1.715-3.875 3.588-5.229C17.575.677 19.846 0 22.498 0c2.638 0 4.887.684 6.746 2.05 1.873 1.354 2.81 3.173 2.81 5.456 0 1.695-.506 3.144-1.518 4.348-.998 1.203-2.235 1.859-3.712 1.968 1.832.274 3.302 1.033 4.41 2.277 1.12 1.244 1.681 2.74 1.681 4.49 0 2.407-.97 4.39-2.912 5.948-1.928 1.545-4.498 2.318-7.711 2.318-2.967 0-5.42-.753-7.362-2.256-1.928-1.518-3.145-3.254-3.65-5.21l4.778-1.168c.957 3.117 3.021 4.675 6.193 4.675 1.64 0 2.96-.416 3.958-1.25 1.012-.848 1.518-1.867 1.518-3.056 0-1.203-.438-2.256-1.313-3.158-.861-.916-2.167-1.374-3.917-1.374h-3.425zM39.768 10.2c-1.258 0-2.267-.483-3.027-1.45-.752-.975-1.127-2.162-1.127-3.56 0-1.373.38-2.522 1.14-3.445.76-.933 1.778-1.399 3.053-1.399 1.424 0 2.476.488 3.158 1.463C43.655 2.785 44 3.9 44 5.15c0 1.554-.41 2.785-1.232 3.691-.82.907-1.821 1.36-3 1.36zm.013-1.916c1.205 0 1.808-1.036 1.808-3.108 0-1.968-.581-2.952-1.743-2.952-1.18 0-1.769.98-1.769 2.94 0 2.08.568 3.12 1.704 3.12zM53.333.592L42.261 18.268h-2.273L51.099.592h2.234zm-.105 18.104c-1.179 0-2.157-.45-2.935-1.347-.769-.907-1.153-2.046-1.153-3.419 0-1.58.428-2.823 1.284-3.73.865-.914 1.857-1.372 2.975-1.372 1.057 0 2.005.423 2.843 1.27.839.845 1.258 2.123 1.258 3.832 0 1.433-.406 2.586-1.219 3.458-.803.872-1.82 1.308-3.053 1.308zm.105-1.878c.62 0 1.07-.294 1.35-.88.288-.596.432-1.278.432-2.046 0-1.114-.14-1.909-.42-2.383-.27-.484-.69-.726-1.257-.726-1.24 0-1.86 1.006-1.86 3.018 0 2.011.585 3.017 1.755 3.017z"
+                  <div class="form__tab form__tab-card" data-tab="tab-tranzilla">
+                    <span class="form__tab-discount">-3</span>
+                    <div class="img-wrap">
+                      <svg width="23" height="19" viewBox="0 0 23 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4.768 10.2c-1.258 0-2.267-.483-3.027-1.45C.989 7.775.614 6.588.614 5.19c0-1.373.38-2.522 1.14-3.445C2.514.812 3.532.346 4.807.346c1.424 0 2.476.488 3.158 1.463C8.655 2.785 9 3.9 9 5.15c0 1.554-.41 2.785-1.232 3.691-.82.907-1.821 1.36-3 1.36V10.2zm.013-1.916c1.205 0 1.808-1.036 1.808-3.108 0-1.968-.581-2.952-1.743-2.952-1.18 0-1.769.98-1.769 2.94 0 2.08.568 3.12 1.704 3.12zM18.333.592L7.261 18.268H4.988L16.099.592h2.234zm-.105 18.104c-1.179 0-2.157-.45-2.935-1.347-.769-.907-1.153-2.046-1.153-3.419 0-1.58.428-2.823 1.284-3.73.865-.914 1.857-1.372 2.975-1.372 1.057 0 2.005.423 2.843 1.27.839.845 1.258 2.123 1.258 3.832 0 1.433-.406 2.586-1.219 3.458-.803.872-1.82 1.308-3.053 1.308zm.105-1.878c.62 0 1.07-.294 1.35-.88.288-.596.432-1.278.432-2.046 0-1.114-.14-1.909-.42-2.383-.27-.484-.69-.726-1.257-.726-1.24 0-1.86 1.006-1.86 3.018 0 2.011.585 3.017 1.755 3.017z"
                               fill="#49525C" />
                       </svg>
                       
-                      <p>Оплата онлайн</p>
                     </div>
+                    <span class="form__tab-text">Оплата онлайн</span>
                   </div>
                 </div>
       
                 <div class="form__tabs-content">
       
-                </div>
-      
-                <div class="tab_content">
-      
-                  <div class="tab_item" id="consultant_payment">
+                  <div class="tab_item" id="tab-leadform">
                     <div class="tab_item_content">
                       <div class="call_form">
-                        <p class="call_form__subtitle">Оставьте свои данные и оператор перезвонит Вам в течение 1 дня.</p>
+                        <p class="form__tabs-subtitle">Оставьте свои данные и оператор перезвонит Вам в течение 1 дня.</p>
       
                         <form accept-charset="UTF-8" autocomplete="on" class="form-container" data-parsley-validate=""
                               method="post" novalidate="" data-formname="bottom_form">
                           <fieldset>
                             <div class="form_row">
                               <label class="name_label" for="name">
-                                <span class="red_point"></span>
+                                <input type="text" name="name" class="form-text parsley-error" autocomplete="name"
+                                       data-parsley-error-message="Введите Ваше имя" data-parsley-trigger="change" required=""
+                                       tabindex="5" placeholder="Ваше имя" maxlength="40">
                               </label>
-                              <br>
-                              <input name="name" type="text" class="form-text parsley-error" autocomplete="name"
-                                     data-parsley-error-message="Введите Ваше имя" data-parsley-trigger="change" required=""
-                                     tabindex="5" size="60" placeholder="Ваше имя" data-parsley-maxlength="40" maxlength="40">
                             </div>
       
                             <div class="form_row telephone_number__wrapper pop">
-      
                               <label class="phone_label" for="phone">
-                                <span class="red_point"></span>
-                              </label>
-                              <br>
-                              <div class="intl-tel-input">
-                                <div class="flag-container">
-                                  <div class="selected-flag" role="combobox" aria-owns="country-listbox">
+                                <div class="intl-tel-input">
+                                  <div class="flag-container">
+                                    <div class="selected-flag" role="combobox" aria-owns="country-listbox">
+                                    </div>
                                   </div>
-                                </div>
       
-                                <input name="phone" type="tel" class="form-text parsley-success phone-input"
-                                       autocomplete="tel" data-parsley-error-message="Введите корректный номер телефона"
-                                       data-parsley-trigger="change" required="" tabindex="6" data-parsley-i18nvalidation=""
-                                       data-parsley-minlength="7" data-parsley-pattern="^\D*(?:\d\D*){7,}$"
-                                       data-intl-tel-input-id="0" placeholder="Телефон" data-parsley-maxlength="15"
-                                       maxlength="15">
-                              </div>
+                                  <input name="phone" type="tel" class="form-text parsley-success phone-input"
+                                         autocomplete="tel" data-parsley-error-message="Введите корректный номер телефона"
+                                         data-parsley-trigger="change" required="" tabindex="6" data-parsley-i18nvalidation=""
+                                         data-parsley-minlength="7" data-parsley-pattern="^\D*(?:\d\D*){7,}$"
+                                         data-intl-tel-input-id="0" placeholder="Телефон" maxlength="15">
+                                </div>
+                              </label>
       
                             </div>
       
@@ -238,7 +245,7 @@
                     </div>
                   </div>
       
-                  <div class="tab_item" id="cc_payment" style="display: none;">
+                  <div class="tab_item" id="tab-tranzilla" style="display: none;">
                     <div class="tab_item_content">
                       <div class="card_form">
                         <div id="form-step1">
@@ -882,6 +889,16 @@
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
           integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.min.js"
+          integrity="sha512-OnkjbJ4TwPpgSmjXACCb5J4cJwi880VRe+vWpPDlr8M38/L3slN5uUAeOeWU2jN+4vN0gImCXFGdJmc0wO4Mig=="
+          crossorigin="anonymous"></script>
+  <script>
+    var input = document.querySelector(".intl-tel-input");
+    window.intlTelInput(input, {
+      // any initialisation options go here
+    });
+
+  </script>
   <script src="assets/js/main.min.js"></script>
 </body>
 
